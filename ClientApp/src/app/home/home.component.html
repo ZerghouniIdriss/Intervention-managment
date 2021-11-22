@@ -1,0 +1,113 @@
+<div class="card-wrapper">
+
+    <mat-card class="example-card">
+
+        <mat-grid-list cols="12" rowHeight="50px" gutterSize="10px">
+
+            <mat-grid-tile colspan="4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Par Mois</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let food of periods" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Par État</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let food of etats" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Par Clinique</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let food of cliniques" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+
+        </mat-grid-list>
+
+        <mat-card-content>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo
+             </p>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo
+             </p>
+ 
+
+
+        </mat-card-content>
+
+    </mat-card>
+
+</div>
+
+<div class="card-wrapper">
+    <mat-card class="example-card">
+        <mat-grid-list cols="12" rowHeight="50px" gutterSize="10px">
+            <mat-grid-tile colspan="4">
+                <button [routerLink]="'/home'" mat-button class="menu-button">
+                    <mat-icon>home</mat-icon>
+                </button>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="4">
+                <button [routerLink]="'/interventions'" mat-button class="menu-button">
+                    <mat-icon>medication</mat-icon>
+                </button>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="4">
+                <button [routerLink]="'/cliniques'" mat-button class="menu-button">
+                    <mat-icon>location_city</mat-icon>
+                </button>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="12" rowHeight="25px" gutterSize="10px">
+            <mat-grid-tile colspan="4">
+                <button [routerLink]="'/home'" mat-button class="menu-button">
+                    <span>Acceuil</span>
+                </button>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="4">
+                <button [routerLink]="'/interventions'" mat-button class="menu-button">
+                    <span>Intérventions</span>
+                </button>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="4">
+                <button [routerLink]="'/cliniques'" mat-button class="menu-button">
+                    <span>Cliniques</span>
+                </button>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card>
+</div>

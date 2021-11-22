@@ -1,0 +1,36 @@
+
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+.text-inside-grid-left {
+  position: absolute;
+  left: 5px;
+  }
+
+.text-inside-grid-right {
+    position: absolute;
+    right: 5px;
+    }
+
+
+.mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4,
+.mat-toolbar h5, .mat-toolbar h6 {
+  font: 500 16px/32px
+   Roboto, "Helvetica Neue", sans-serif;
+  }
+
+.full-width {
+  width: 100%;
+}
+
+.card{
+ margin-top: 16px ;
+ margin-top: 10px;
+ background-color: #fff;
+ box-shadow: 1px 1px 1px #cabcbc;
+}
+
+.action {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

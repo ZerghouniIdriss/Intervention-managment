@@ -1,0 +1,35 @@
+<mat-card-content>
+  <mat-grid-list cols="12" rowHeight="50px" gutterSize="15px">
+    <mat-grid-tile colspan="3">
+      <div class="text-inside-grid-left">{{item.id}} </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6">
+      <div class="text-inside-grid-left">{{item.f_name}} {{item.l_name}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
+      <div class="text-inside-grid-right"> {{item.admission_date}}
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
+      <div class="text-inside-grid-left">  {{item.clinique}}
+        <br>
+        {{item.ref}}
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6">
+      <div class="text-inside-grid-left">
+        {{item.motif}}
+        <br>
+        {{item.status}}
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
+      <div class="text-inside-grid-right">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</mat-card-content>
