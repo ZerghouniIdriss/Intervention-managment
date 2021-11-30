@@ -4,14 +4,16 @@
       <div class="text-inside-grid-left">{{item.id}} </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="6">
-      <div class="text-inside-grid-left">{{item.f_name}} {{item.l_name}}</div>
+      <div class="text-inside-grid-left">{{item.f_Name}} {{item.l_Name}}</div>
     </mat-grid-tile>
     <mat-grid-tile colspan="3">
-      <div class="text-inside-grid-right"> {{item.admission_date}}
+      <div class="text-inside-grid-right">
+        {{item.admission_Date}}
       </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="3">
-      <div class="text-inside-grid-left">  {{item.clinique}}
+      <div class="text-inside-grid-left">
+        {{item.clinique}}
         <br>
         {{item.ref}}
       </div>
@@ -23,12 +25,20 @@
         {{item.status}}
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="3">
-      <div class="text-inside-grid-right">
+    <mat-grid-tile colspan="1">
+ 
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+      <button mat-icon-button color="primary" (click)="onEditItem(item)">
         <mat-icon>
           edit
         </mat-icon>
-      </div>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+      <button mat-icon-button color="warn" (click)="onDeleteItem(item.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-grid-tile>
   </mat-grid-list>
 

@@ -19,6 +19,7 @@ namespace Project3.Data
         }
 
         public DbSet<Clinique> Cliniques { get; set; }
+        public DbSet<Intervention> Interventions { get; set; }
 
     }
 }

@@ -1,16 +1,24 @@
-<ul class="navbar-nav" *ngIf="isAuthenticated | async">
-    <li class="nav-item">
-        <a  class="nav-link text-dark" [routerLink]='["/authentication/profile"]' title="Manage">Hello {{ userName | async }}</a>
-    </li>
-    <li class="nav-item">
-        <a  class="nav-link text-dark" [routerLink]='["/authentication/logout"]' [state]='{ local: true }' title="Logout">Logout</a>
-    </li>
-</ul>
-<ul class="navbar-nav" *ngIf="!(isAuthenticated | async)">
-  <li class="nav-item">
-        <a class="nav-link text-dark" [routerLink]='["/authentication/register"]'>Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" [routerLink]='["/authentication/login"]'>Login</a>
-    </li>
-</ul>
+
+
+<ng-container *ngIf="isAuthenticated | async">
+
+  <h4 class="name">{{ userName | async}}</h4>
+  <p class="designation">Compte principal</p>
+
+  <button mat-button class="menu-button" [routerLink]='["/authentication/logout"]'>
+    <mat-icon>logout</mat-icon>
+    <span>Se déconnecter</span>
+  </button>
+
+</ng-container>
+<ng-container *ngIf="!(isAuthenticated | async)">
+
+  <button mat-button class="menu-button" [routerLink]='["/authentication/register"]'>
+    <span>Creer un compte</span>
+  </button>
+
+  <button mat-button class="menu-button" [routerLink]='["/authentication/login"]'>
+    <mat-icon>login</mat-icon>
+    <span>Se connecter</span>
+  </button>
+</ng-container>

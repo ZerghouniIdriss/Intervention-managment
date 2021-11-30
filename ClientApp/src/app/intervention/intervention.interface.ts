@@ -1,10 +1,10 @@
 export interface Intervention {
-  id: string,
-  clinique: string,
-  ref: string,
-  f_name: string,
-  l_name: string,
-  admission_date: string,
-  motif: string,
-  status: string
+  id?: number;
+  f_Name: string;
+  l_Name: string;
+  admission_Date: string;
+  clinique?: number;
+  ref: string;
+  motif: string;
+  status?: number;
 }

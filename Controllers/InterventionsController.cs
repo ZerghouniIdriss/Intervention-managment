@@ -2,60 +2,61 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project3.Data;
 using Project3.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Project3.Controllers
 {
+
     [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class CliniquesController : ControllerBase
+    public class InterventionsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public CliniquesController(ApplicationDbContext context)
+        public InterventionsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Cliniques
+        // GET: api/Interventions
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Clinique>>> GetCliniques()
+        public async Task<ActionResult<IEnumerable<Intervention>>> GetInterventions()
         {
-            return await _context.Cliniques.ToListAsync();
+            return await _context.Interventions.ToListAsync();
         }
 
-        // GET: api/Cliniques/5
+        // GET: api/Interventions/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Clinique>> GetClinique(int id)
+        public async Task<ActionResult<Intervention>> GetIntervention(int id)
         {
-            var clinique = await _context.Cliniques.FindAsync(id);
+            var intervention = await _context.Interventions.FindAsync(id);
 
-            if (clinique == null)
+            if (intervention == null)
             {
                 return NotFound();
             }
 
-            return clinique;
+            return intervention;
         }
 
-        // PUT: api/Cliniques/5
+        // PUT: api/Interventions/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClinique(int id, Clinique clinique)
+        public async Task<IActionResult> PutIntervention(int id, Intervention intervention)
         {
-            if (id != clinique.Id)
+            if (id != intervention.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(clinique).State = EntityState.Modified;
+            _context.Entry(intervention).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +64,7 @@ namespace Project3.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CliniqueExists(id))
+                if (!InterventionExists(id))
                 {
                     return NotFound();
                 }
@@ -76,37 +77,39 @@ namespace Project3.Controllers
             return NoContent();
         }
 
-        // POST: api/Cliniques
+        // POST: api/Interventions
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Clinique>> PostClinique(Clinique clinique)
+        public async Task<ActionResult<Intervention>> PostIntervention(Intervention intervention)
         {
-            _context.Cliniques.Add(clinique);
+            _context.Interventions.Add(intervention);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetClinique", new { id = clinique.Id }, clinique);
+            return CreatedAtAction("GetIntervention", new { id = intervention.Id }, intervention);
         }
 
-        // DELETE: api/Cliniques/5
+        // DELETE: api/Interventions/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Clinique>> DeleteClinique(int id)
+        public async Task<ActionResult<Intervention>> DeleteIntervention(int id)
         {
-            var clinique = await _context.Cliniques.FindAsync(id);
-            if (clinique == null)
+            var intervention = await _context.Interventions.FindAsync(id);
+            if (intervention == null)
             {
                 return NotFound();
             }
 
-            _context.Cliniques.Remove(clinique);
+            _context.Interventions.Remove(intervention);
             await _context.SaveChangesAsync();
 
-            return clinique;
+            return intervention;
         }
 
-        private bool CliniqueExists(int id)
+
+
+        private bool InterventionExists(int id)
         {
-            return _context.Cliniques.Any(e => e.Id == id);
+            return _context.Interventions.Any(e => e.Id == id);
         }
     }
 }

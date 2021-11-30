@@ -6,6 +6,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { RouterModule } from '@angular/router';
 import { ApplicationPaths } from './api-authorization.constants';
 import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule, MatIconModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -22,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
         { path: ApplicationPaths.LoggedOut, component: LogoutComponent },
         { path: ApplicationPaths.LogOutCallback, component: LogoutComponent }
       ]
-    )
+    ),
+    MatIconModule,
+    MatButtonModule
   ],
   declarations: [LoginMenuComponent, LoginComponent, LogoutComponent],
   exports: [LoginMenuComponent, LoginComponent, LogoutComponent]

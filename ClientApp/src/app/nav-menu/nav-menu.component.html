@@ -1,50 +1,53 @@
-<header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Project3</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <app-login-menu></app-login-menu>
-        <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/clinique']"
-              >Cliniques</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/intervention']"
-              >Interventions</a
-            >
-          </li>
-        </ul>
+<mat-toolbar class="">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+  <span class="header-spacer"></span>
+  <u><a [routerLink]="'profiles'">Alami Z.</a></u>
+</mat-toolbar>
+<ng-container>
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="">
+
+      <app-login-menu></app-login-menu>
+      <ng-container *ngIf="isAuthenticated | async">
+
+        <mat-divider></mat-divider>
+
+        <button [routerLink]="'home'" mat-button class="menu-button">
+          <mat-icon>home</mat-icon>
+          <span>Acceuil</span>
+        </button>
+
+        <button [routerLink]="'interventions'" mat-button class="menu-button">
+          <mat-icon>medication</mat-icon>
+          <span>Intérventions</span>
+        </button>
+
+        <button [routerLink]="'cliniques'" mat-button class="menu-button">
+          <mat-icon>location_city</mat-icon>
+          <span>Cliniques</span>
+        </button>
+
+        <button [routerLink]="'profiles'" mat-button class="menu-button">
+          <mat-icon>people_alt</mat-icon>
+          <span>Profiles</span>
+        </button>
+      </ng-container>
+
+
+
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content ">
+        <router-outlet></router-outlet>
       </div>
-    </div>
-  </nav>
-</header>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

@@ -13,7 +13,7 @@
   </mat-card>
 
   <mat-card class="card" *ngFor="let item of items | interventionFilter:filterarg">
-    <app-intervention-card [item]="item"></app-intervention-card>
+    <app-intervention-card [item]="item" (editEmitter)="onEdit($event)" (deleteEmitter)="onDelete($event)"></app-intervention-card>
   </mat-card>
 
   <mat-grid-list cols="12" rowHeight="50px" gutterSize="15px" class='action'>
@@ -34,49 +34,49 @@
       <mat-grid-tile colspan="12">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Clinique</mat-label>
-          <input matInput placeholder="" value="" formControlName="clinique">
+          <input matInput placeholder=""  formControlName="clinique">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="12">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Numero de dossier clinique</mat-label>
-          <input matInput placeholder="" value="" formControlName="ref">
+          <input matInput placeholder=""  formControlName="ref">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="12">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Nom</mat-label>
-          <input matInput placeholder="" value="" formControlName="f_name">
+          <input matInput  formControlName="f_Name">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="12">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Prénom</mat-label>
-          <input matInput placeholder="" value="" formControlName="l_name">
+          <input matInput placeholder=""  formControlName="l_Name">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="12">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Date d'admission</mat-label>
-          <input matInput placeholder="" value="" formControlName="admission_date">
+          <input matInput placeholder=""  formControlName="admission_Date">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="12">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Motif d'intervention</mat-label>
-          <input matInput placeholder="" value="" formControlName="motif">
+          <input matInput placeholder=""  formControlName="motif">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="12">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>État</mat-label>
-          <input matInput placeholder="" value="" formControlName="status">
+          <input matInput placeholder=""  formControlName="status">
         </mat-form-field>
       </mat-grid-tile>
     </form>

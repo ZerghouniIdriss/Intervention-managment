@@ -19,6 +19,7 @@ import { InterventionCardComponent } from './intervention/intervention-card/inte
 import { ProfileComponent } from './profile/profile.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -35,14 +36,8 @@ import { environment } from '../environments/environment';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    AppRoutingModule,
     ApiAuthorizationModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
-      { path: 'cliniques', component: CliniqueComponent, canActivate: [AuthorizeGuard] },
-      { path: 'interventions', component: InterventionComponent },
-      { path: 'profiles', component: ProfileComponent }
-    ]),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
@@ -63,8 +58,7 @@ import { environment } from '../environments/environment';
     MatListModule,
     MatSelectModule,
     FormsModule,
-    BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    BrowserAnimationsModule
 
   ],
   providers: [

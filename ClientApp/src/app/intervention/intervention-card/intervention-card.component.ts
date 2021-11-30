@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Intervention } from '../intervention.interface';
 
 @Component({
@@ -10,11 +10,21 @@ import { Intervention } from '../intervention.interface';
 
 export class InterventionCardComponent implements OnInit {
 
-  @Input() item :Intervention ;
+  @Input() item: Intervention;
+  @Output() editEmitter = new EventEmitter<Intervention>();
+  @Output() deleteEmitter = new EventEmitter<Intervention>();
+
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onEditItem(value: Intervention) {
+    this.editEmitter.emit(value);
+  }
+
+  onDeleteItem(index) {
+    this.deleteEmitter.emit(index);
+  }
 }
