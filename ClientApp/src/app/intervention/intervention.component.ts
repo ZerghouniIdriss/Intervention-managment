@@ -4,6 +4,7 @@ import { Intervention } from './intervention.interface';
 import { InterventionService } from './intervention.service';
 import { Clinique } from '../clinique/clinique.interface';
 import { SharedService } from '../shared/shared.service';
+import { DropDownItem } from '../shared/shared.interfaces';
 
 @Component({
   selector: 'app-intervention',
@@ -21,6 +22,19 @@ export class InterventionComponent {
   mutualiste_options: string[] = [  'Mary', 'Shelley',  'Igor'];
 
   cliniqueList: Clinique[];
+
+  statusList: DropDownItem[]=[{
+    id:1,
+    name:"R"
+   },
+   {
+    id:2,
+    name:"N/R"
+   },
+
+  ];
+
+
 
   constructor(private service: InterventionService, private sharedService: SharedService, private formBuilder: FormBuilder) {
 
