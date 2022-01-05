@@ -20,6 +20,15 @@ namespace Project3.Models
         public int Clinique { get; set; }
         public string Ref { get; set; }
         public string Motif { get; set; }
+        public string Diag { get; set; }
+        public string Examen_Clinique { get; set; }
+        public string Radiologie { get; set; }
+        public string Operateur { get; set; }
+        public string Mutualiste { get; set; }
+        public string Conclusion { get; set; }
+        public string MAJ { get; set; }
+        public double Honoraire { get; set; }
+        public double Remise { get; set; }
         public int Status { get; set; }
     }
 }

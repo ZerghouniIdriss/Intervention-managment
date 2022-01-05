@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Clinique } from '../../clinique/clinique.interface';
 import { Intervention } from '../intervention.interface';
 
 @Component({
@@ -11,6 +12,8 @@ import { Intervention } from '../intervention.interface';
 export class InterventionCardComponent implements OnInit {
 
   @Input() item: Intervention;
+  @Input() cliniqueList: Clinique[];
+
   @Output() editEmitter = new EventEmitter<Intervention>();
   @Output() deleteEmitter = new EventEmitter<Intervention>();
 
@@ -26,5 +29,11 @@ export class InterventionCardComponent implements OnInit {
 
   onDeleteItem(index) {
     this.deleteEmitter.emit(index);
+  }
+
+  getCliniqueNamebyId(id) {
+    if (this.cliniqueList) {
+    return this.cliniqueList.find(x => x.id==id).name;
+    }
   }
 }

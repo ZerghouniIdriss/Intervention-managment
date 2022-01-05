@@ -13,7 +13,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="3">
       <div class="text-inside-grid-left">
-        {{item.clinique}}
+        {{getCliniqueNamebyId(item.clinique)}}
         <br>
         {{item.ref}}
       </div>
@@ -28,18 +28,19 @@
     <mat-grid-tile colspan="1">
  
     </mat-grid-tile>
-    <mat-grid-tile colspan="1">
+    <mat-grid-tile colspan="1" class="text-inside-grid-right">
       <button mat-icon-button color="primary" (click)="onEditItem(item)">
         <mat-icon>
           edit
         </mat-icon>
       </button>
     </mat-grid-tile>
-    <mat-grid-tile colspan="1">
+    <mat-grid-tile colspan="1" class="text-inside-grid-right">
       <button mat-icon-button color="warn" (click)="onDeleteItem(item.id)">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-grid-tile>
+
   </mat-grid-list>
 
 </mat-card-content>

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Project3.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class CliniquesController : ControllerBase

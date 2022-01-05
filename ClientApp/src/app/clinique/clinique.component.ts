@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { Clinique } from './clinique.interface';
+import { CliniqueService } from './clinique.service';
 
 @Component({
   selector: 'app-clinique',
@@ -13,12 +15,8 @@ export class CliniqueComponent {
   public isAdding: boolean = false;
   private apiServer;
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private formBuilder: FormBuilder) {
-    this.apiServer = baseUrl;
-    http.get<Clinique[]>(this.apiServer + 'Cliniques').subscribe(result => {
-      this.items = result;
-    },
-      error => console.error(error));
+  constructor(private service: CliniqueService, private formBuilder: FormBuilder) {
+  
   }
 
   form = this.formBuilder.group({
@@ -26,9 +24,19 @@ export class CliniqueComponent {
     name: ''
   });
 
+  ngOnInit() {
+    this.refreshData();
+  }
+
+  refreshData() {
+    this.service.getAll().subscribe((data: Clinique[]) => {
+      this.items = data;
+    });
+  } 
+
   onSubmit(): void {
-    this.create(this.form.value).subscribe(res => {
-      console.warn('Your order has been submitted', this.form.value);
+    this.service.create(this.form.value).subscribe(res => {
+      console.warn('Creation has been submitted', this.form.value);
       this.items.push(res);
       this.resetForm();
     })
@@ -40,7 +48,7 @@ export class CliniqueComponent {
   }
 
   onDelete(index: any): void {
-    this.delete(index).subscribe(res => {
+    this.service.delete(index).subscribe(res => {
       this.items.splice(index, 1);
     });
   }
@@ -53,40 +61,8 @@ export class CliniqueComponent {
     this.form.reset();
     this.isAdding = false;
   }
-
-  delete(id) {
-    return this.http.delete<Clinique>(this.apiServer + 'Cliniques/'+ id)
-      .pipe(
-        catchError(this.errorHandler)
-      )
-  }
-
-  create(item): Observable<Clinique> {
-    return this.http.post<Clinique>(this.apiServer + 'Cliniques', item)
-      .pipe(
-        catchError(this.errorHandler)
-      )
-  }
-
-
-  errorHandler(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(errorMessage);
-  }
-
+   
 }
 
 
 
-interface Clinique {
-  id?: number;
-  name: string;
-}

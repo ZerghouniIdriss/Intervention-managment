@@ -1,4 +1,8 @@
 
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: 1.75em 0.75em 0 0.75em;
+}
+
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 .text-inside-grid-left {
@@ -33,4 +37,8 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+.mat-form-field-wrapper {
+  padding-top: 1.34375em;
 }

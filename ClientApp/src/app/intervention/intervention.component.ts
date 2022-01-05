@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Intervention } from './intervention.interface';
 import { InterventionService } from './intervention.service';
+import { Clinique } from '../clinique/clinique.interface';
+import { SharedService } from '../shared/shared.service';
 
 @Component({
   selector: 'app-intervention',
@@ -16,12 +18,19 @@ export class InterventionComponent {
   filterarg = '';
   private form: FormGroup;
 
-  constructor(private service: InterventionService,private formBuilder: FormBuilder) {
+  mutualiste_options: string[] = [  'Mary', 'Shelley',  'Igor'];
+
+  cliniqueList: Clinique[];
+
+  constructor(private service: InterventionService, private sharedService: SharedService, private formBuilder: FormBuilder) {
 
   }
 
   ngOnInit() {
     this.refreshData();
+    this.sharedService.getCliniques().subscribe((data: Clinique[]) => {
+      this.cliniqueList = data
+    })
   }
 
   refreshData() {
@@ -58,9 +67,18 @@ export class InterventionComponent {
         f_Name: '',
         l_Name: '',
         admission_Date: '',
-        clinique: 5,
+        clinique: 0,
         ref: '',
         motif: '',
+        diag: '',
+        examen_Clinique: '',
+        radiologie: '',
+        operateur: '',
+        mutualiste: '',
+        conclusion: '',
+        maj: '',
+        honoraire: 0,
+        remise: 0,
         status: 0
       });
     });
@@ -78,22 +96,19 @@ export class InterventionComponent {
   }
 
   onEdit(item): void {
-    this.form = this.formBuilder.group({
-      id: item.id,
-      f_Name: item.f_Name,
-      l_Name: item.l_Name,
-      admission_Date: item.admission_Date,
-      clinique: item.clinique,
-      ref: item.ref,
-      motif: item.motif,
-      status: item.status
-    });
+    this.form = this.formBuilder.group(item
+      //id: item.id,
+      //f_Name: item.f_Name,
+      //l_Name: item.l_Name,
+      //admission_Date: item.admission_Date,
+      //clinique: item.clinique,
+      //ref: item.ref,
+      //motif: item.motif,
+      //status: item.status
+    );
     this.isEditing = true;
   }
 
-  
-
- 
 
 
   private resetForm() {
@@ -101,7 +116,4 @@ export class InterventionComponent {
     this.isNew = false;
     this.isEditing = false;
   }
-
-
-
 }

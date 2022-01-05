@@ -13,7 +13,7 @@
   </mat-card>
 
   <mat-card class="card" *ngFor="let item of items | interventionFilter:filterarg">
-    <app-intervention-card [item]="item" (editEmitter)="onEdit($event)" (deleteEmitter)="onDelete($event)"></app-intervention-card>
+    <app-intervention-card [item]="item" [cliniqueList]="cliniqueList" (editEmitter)="onEdit($event)" (deleteEmitter)="onDelete($event)"></app-intervention-card>
   </mat-card>
 
   <mat-grid-list cols="12" rowHeight="50px" gutterSize="15px" class='action'>
@@ -31,54 +31,119 @@
   <mat-grid-list cols="12" rowHeight="50px" gutterSize="15px">
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
-      <mat-grid-tile colspan="12">
+      <mat-grid-tile colspan="8">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Clinique</mat-label>
-          <input matInput placeholder=""  formControlName="clinique">
+          <mat-select formControlName="clinique">
+            <mat-option *ngFor="let clinique of cliniqueList" [value]="clinique.id">
+              {{clinique.name}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="12">
+      <mat-grid-tile colspan="4">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Numero de dossier clinique</mat-label>
-          <input matInput placeholder=""  formControlName="ref">
+          <input matInput placeholder="" formControlName="ref">
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="12">
+      <mat-grid-tile colspan="6">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Nom</mat-label>
-          <input matInput  formControlName="f_Name">
+          <input matInput formControlName="f_Name">
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="12">
+      <mat-grid-tile colspan="6">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Prénom</mat-label>
-          <input matInput placeholder=""  formControlName="l_Name">
+          <input matInput placeholder="" formControlName="l_Name">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="12">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Date d'admission</mat-label>
-          <input matInput placeholder=""  formControlName="admission_Date">
+          <input matInput placeholder="" formControlName="admission_Date">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="12">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Motif d'intervention</mat-label>
-          <input matInput placeholder=""  formControlName="motif">
+          <input matInput placeholder="" formControlName="motif">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="12">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Diag</mat-label>
+          <input matInput placeholder="" formControlName="diag">
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="12">
         <mat-form-field class="full-width" appearance="fill">
-          <mat-label>État</mat-label>
-          <input matInput placeholder=""  formControlName="status">
+          <mat-label>Examen Clinique</mat-label>
+          <input matInput placeholder="" formControlName="examen_Clinique">
         </mat-form-field>
       </mat-grid-tile>
+
+      <mat-grid-tile colspan="12">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Radiologie</mat-label>
+          <input matInput placeholder="" formControlName="radiologie">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="12">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Operateur</mat-label>
+          <input matInput placeholder="" formControlName="operateur">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!--<mat-grid-tile colspan="12">
+        <app-auto-complete [options]="mutualiste_options" [control]="form.get('mutualiste')"></app-auto-complete>
+      </mat-grid-tile>-->
+
+      <mat-grid-tile colspan="12">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Conclusion</mat-label>
+          <input matInput placeholder="" formControlName="conclusion">
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile colspan="12">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>MAJ</mat-label>
+          <input matInput placeholder="" formControlName="maj">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="6">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Honoraire</mat-label>
+          <input matInput placeholder="" formControlName="honoraire">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="6">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Remise</mat-label>
+          <input matInput placeholder="" formControlName="remise">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="12">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Status</mat-label>
+          <input matInput placeholder="" formControlName="status">
+        </mat-form-field>
+      </mat-grid-tile>
+
     </form>
   </mat-grid-list>
 

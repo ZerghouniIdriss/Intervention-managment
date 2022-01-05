@@ -301,6 +301,18 @@ namespace Project3.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Project3.Models.Biologie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Biologies");
+                });
+
             modelBuilder.Entity("Project3.Models.Clinique", b =>
                 {
                     b.Property<int>("Id")
@@ -329,17 +341,44 @@ namespace Project3.Data.Migrations
                     b.Property<int>("Clinique")
                         .HasColumnType("int");
 
+                    b.Property<string>("Conclusion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Diag")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Examen_Clinique")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("F_Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Honoraire")
+                        .HasColumnType("float");
+
                     b.Property<string>("L_Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MAJ")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Motif")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Mutualiste")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Operateur")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Radiologie")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Ref")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Remise")
+                        .HasColumnType("float");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

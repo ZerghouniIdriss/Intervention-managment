@@ -9,9 +9,9 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
-import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
-import { MatButtonModule, MatCardModule, MatDividerModule, MatGridListModule, MatInputModule, MatListModule, MatSelectModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
+import {  MatButtonModule, MatCardModule, MatDividerModule, MatGridListModule, MatInputModule, MatListModule,
+   MatSelectModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterventionComponent } from './intervention/intervention.component';
@@ -20,6 +20,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
+import { AutoCompleteComponent } from './shared/component/auto-complete/auto-complete.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { AppRoutingModule } from './app-routing.module';
     InterventionComponent,
     InterventionCardComponent,
     InterventionFilterPipe,
-    ProfileComponent
+    ProfileComponent,
+    AutoCompleteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -57,7 +60,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatCardModule,
     MatListModule,
     MatSelectModule,
-    FormsModule,
+     FormsModule,
+     MatAutocompleteModule,
     BrowserAnimationsModule
 
   ],
