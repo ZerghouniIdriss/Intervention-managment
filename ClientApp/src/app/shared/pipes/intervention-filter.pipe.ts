@@ -15,8 +15,9 @@ export class InterventionFilterPipe implements PipeTransform {
         return items.filter(item =>
         item.ref.indexOf(filter) !== -1 ||
         //item.clinique == filter ||
-        item.f_Name.indexOf(filter) !== -1 ||
-        item.l_Name.indexOf(filter) !== -1
+        item.f_Name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 ||
+        item.l_Name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 ||
+        item.motif.toLowerCase().indexOf(filter.toLowerCase()) !== -1
         );
     }
 }
