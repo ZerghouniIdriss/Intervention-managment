@@ -19,7 +19,7 @@ export class InterventionComponent {
   filterarg = '';
   private form: FormGroup;
 
-  mutualiste_options: string[] = [  'Mary', 'Shelley',  'Igor'];
+  mutualiste_options: string[] = ['CPA','BLOCK','HOSPIT','URGENCE'];
 
   cliniqueList: Clinique[];
 
