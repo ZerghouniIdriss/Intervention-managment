@@ -111,14 +111,7 @@ export class InterventionComponent {
 
   onEdit(item): void {
     this.form = this.formBuilder.group(item
-      //id: item.id,
-      //f_Name: item.f_Name,
-      //l_Name: item.l_Name,
-      //admission_Date: item.admission_Date,
-      //clinique: item.clinique,
-      //ref: item.ref,
-      //motif: item.motif,
-      //status: item.status
+
     );
     this.isEditing = true;
   }
