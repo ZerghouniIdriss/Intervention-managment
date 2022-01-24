@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'home', canActivate: [AuthorizeGuard],component: HomeComponent },
   { path: 'interventions', component: InterventionComponent },
   { path: 'cliniques', canActivate: [AuthorizeGuard], component: CliniqueComponent },
-  { path: 'profiles', component: ProfileComponent },
+  //{ path: 'profiles', component: ProfileComponent },
+  { path: 'profiles', redirectTo: '/authentication/profile', pathMatch: 'full' },
   { path: 'interventions', canActivate: [AuthorizeGuard], component: InterventionComponent },
  
 
