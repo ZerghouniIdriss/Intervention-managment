@@ -21,7 +21,20 @@ namespace Project3.Models
         public string Ref { get; set; }
         public string Motif { get; set; }
         public string Diag { get; set; }
-        public string Examen_Clinique { get; set; }
+        public string Biologie_hb { get; set; }
+        public string Biologie_gb { get; set; }
+        public string Biologie_plg { get; set; }
+        public string Biologie_uree { get; set; }
+        public string Biologie_crea { get; set; }
+        public string Biologie_na{ get; set; }
+        public string Biologie_k { get; set; }
+        public string Biologie_ca{ get; set; }
+        public string Biologie_glycemie { get; set; }
+        public string Biologie_tp { get; set; }
+        public string Biologie_inr { get; set; }
+        public string Biologie_tck { get; set; }
+        public string Biologie_crp { get; set; }
+        public string Biologie_other { get; set; }
         public string Radiologie { get; set; }
         public string Operateur { get; set; }
         public string Mutualiste { get; set; }

@@ -42,3 +42,7 @@
 .mat-form-field-wrapper {
   padding-top: 1.34375em;
 }
+
+.mat-drawer-container {
+  background-color: #fff;
+}

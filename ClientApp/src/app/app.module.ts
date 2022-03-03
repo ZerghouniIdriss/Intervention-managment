@@ -22,7 +22,8 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AutoCompleteComponent } from './shared/component/auto-complete/auto-complete.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import {MatExpansionModule} from '@angular/material/expansion';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +61,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatCardModule,
     MatListModule,
     MatSelectModule,
+    MatExpansionModule,
+    MatCardModule,
      FormsModule,
      MatAutocompleteModule,
     BrowserAnimationsModule

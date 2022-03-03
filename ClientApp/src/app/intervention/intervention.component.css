@@ -22,3 +22,10 @@
 }
 
 
+.mat-expansion-panel {
+  background: rgb(240 240 240);
+}
+
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}

@@ -18,6 +18,7 @@ export class InterventionComponent {
   isNew = false;
   filterarg = '';
   private form: FormGroup;
+  panelOpenState = false;
 
   mutualiste_options: string[] = ['CPA','BLOCK','HOSPIT','URGENCE'];
 
@@ -37,7 +38,6 @@ export class InterventionComponent {
 
 
   constructor(private service: InterventionService, private sharedService: SharedService, private formBuilder: FormBuilder) {
-
   }
 
   ngOnInit() {
@@ -86,6 +86,20 @@ export class InterventionComponent {
         motif: '',
         diag: '',
         examen_Clinique: '',
+        biologie_hb: '',
+        biologie_gb: '',
+        biologie_plg: '',
+        biologie_uree: '',
+        biologie_crea: '',
+        biologie_na: '',
+        biologie_k: '',
+        biologie_ca: '',
+        biologie_glycemie: '',
+        biologie_tp: '',
+        biologie_inr: '',
+        biologie_tck: '',
+        biologie_crp: '',
+        biologie_other: '',
         radiologie: '',
         operateur: '',
         mutualiste: '',
