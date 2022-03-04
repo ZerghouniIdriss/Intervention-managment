@@ -12,7 +12,7 @@ using Project3.Models;
 namespace Project3.Controllers
 {
 
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class InterventionsController : ControllerBase
