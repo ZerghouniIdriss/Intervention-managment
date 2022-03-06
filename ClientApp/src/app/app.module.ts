@@ -23,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AutoCompleteComponent } from './shared/component/auto-complete/auto-complete.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { NotFoundComponent } from './error-pages/not-found/not-found.component';
  
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     InterventionCardComponent,
     InterventionFilterPipe,
     ProfileComponent,
-    AutoCompleteComponent
+    AutoCompleteComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
