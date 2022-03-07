@@ -5,11 +5,11 @@ import { UserManager } from 'oidc-client';
 import { BehaviorSubject, concat, from, Observable, Subject } from 'rxjs';
 import { filter, map, mergeMap, take, tap } from 'rxjs/operators';
 import { ApplicationPaths } from '../../../api-authorization/api-authorization.constants';
-import { AuthResponseDto } from '../../../_interfaces/response/AuthResponseDto';
-import { RegistrationResponseDto } from '../../../_interfaces/user/RegistrationResponseDto';
-import { UserForAuthenticationDto } from '../../../_interfaces/user/UserForAuthenticationDto';
-import { UserForRegistrationDto } from '../../../_interfaces/user/UserForRegistrationDto';
-import { IUser } from '../shared.interfaces';
+import { AuthResponseDto } from '../_interfaces/response/AuthResponseDto';
+import { RegistrationResponseDto } from '../_interfaces/user/RegistrationResponseDto';
+import { UserForAuthenticationDto } from '../_interfaces/user/UserForAuthenticationDto';
+import { UserForRegistrationDto } from '../_interfaces/user/UserForRegistrationDto';
+import { IUser } from "../_interfaces/user/iuser.interface";
 @Injectable({
   providedIn: 'root'
 })

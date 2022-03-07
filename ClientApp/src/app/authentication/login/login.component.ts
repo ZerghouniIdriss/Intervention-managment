@@ -2,7 +2,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../shared/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserForAuthenticationDto } from '../../../_interfaces/user/UserForAuthenticationDto';
+import { UserForAuthenticationDto } from '../../shared/_interfaces/user/UserForAuthenticationDto';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl("", [Validators.required])
     })
 
-    this._returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+    this._returnUrl = this._route.snapshot.queryParams['returnUrl'] || 'interventions';
   }
 
   public validateControl = (controlName: string) => {
@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
     this._authService.loginUser(userForAuth)
       .subscribe(res => {
         localStorage.setItem("token", res.token);
-        localStorage.setItem("id_token", res.id_token);
         this._authService.sendAuthStateChangeNotification(res.isAuthSuccessful);
         this._router.navigate([this._returnUrl]);
       },

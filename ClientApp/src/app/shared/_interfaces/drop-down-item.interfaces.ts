@@ -3,6 +3,3 @@ export interface DropDownItem {
  name?:string;
 }
 
-export interface IUser {
-  name?: string;
-}

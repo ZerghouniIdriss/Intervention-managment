@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Clinique } from '../clinique/clinique.interface';
+import { Clinique } from '../../clinique/clinique.interface';
  
 @Injectable({
   providedIn: 'root'

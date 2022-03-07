@@ -1,7 +1,7 @@
 import { AuthenticationService } from './../../shared/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserForRegistrationDto } from '../../../_interfaces/user/UserForRegistrationDto';
+import { UserForRegistrationDto } from '../../shared/_interfaces/user/UserForRegistrationDto';
 import { PasswordConfirmationValidatorService } from '../../shared/custom-validators/password-confirmation-validator.service';
 
 @Component({

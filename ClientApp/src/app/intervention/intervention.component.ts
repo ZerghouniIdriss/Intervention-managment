@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Intervention } from './intervention.interface';
 import { InterventionService } from './intervention.service';
 import { Clinique } from '../clinique/clinique.interface';
-import { SharedService } from '../shared/shared.service';
-import { DropDownItem } from '../shared/shared.interfaces';
+import { SharedService } from '../shared/services/shared.service';
+import { DropDownItem } from '../shared/_interfaces/drop-down-item.interfaces';
 
 @Component({
   selector: 'app-intervention',
