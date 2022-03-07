@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
@@ -10,8 +11,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Project3.Data;
 using Project3.Models;
+using System.Text;
+
 namespace Project3
 {
     public class Startup
@@ -39,6 +43,27 @@ namespace Project3
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+
+            var jwtSettings = Configuration.GetSection("JwtSettings");
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = jwtSettings.GetSection("validIssuer").Value,
+                    ValidAudience = jwtSettings.GetSection("validAudience").Value,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.GetSection("securityKey").Value))
+                };
+            });
+            services.AddScoped<JwtHandler>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory

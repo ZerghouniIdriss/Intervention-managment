@@ -1,18 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthorizeService } from 'src/api-authorization/authorize.service';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css']
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit{
   public isAuthenticated: Observable<boolean>;
   public userName: Observable<string>;
 
-  constructor(private authorizeService: AuthorizeService,) { }
+  public isUserAuthenticated: boolean;
+  constructor(private _authService: AuthenticationService, private _router: Router) { }
+
+  ngOnInit(): void {
+    this._authService.authChanged
+      .subscribe(res => {
+        this.isUserAuthenticated = res;
+      })
+
+    //this.isAuthenticated = this.authorizeService.isAuthenticated();
+   // this.userName = this.authorizeService.getUser().pipe(map(u => u && u.name));
+  }
+   
 
   isExpanded = false;
 
@@ -24,8 +38,9 @@ export class NavMenuComponent {
     this.isExpanded = !this.isExpanded;
   }
 
-  ngOnInit() {
-    this.isAuthenticated = this.authorizeService.isAuthenticated();
-    this.userName = this.authorizeService.getUser().pipe(map(u => u && u.name));
+  public logout = () => {
+    this._authService.logout();
+    this._router.navigate(["/"]);
   }
+   
 }

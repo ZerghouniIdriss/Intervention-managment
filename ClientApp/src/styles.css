@@ -46,3 +46,18 @@
 .mat-drawer-container {
   background-color: #fff;
 }
+
+em {
+  color: #e71515;
+  font-weight: bold;
+}
+
+.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+.card {
+  margin-top: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px #cabcbc;
+}

@@ -4,13 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
+ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
-import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
-import {  MatButtonModule, MatCardModule, MatDividerModule, MatGridListModule, MatInputModule, MatListModule,
+ import {  MatButtonModule, MatCardModule, MatDividerModule, MatGridListModule, MatInputModule, MatListModule,
    MatSelectModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +21,13 @@ import { AutoCompleteComponent } from './shared/component/auto-complete/auto-com
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
- 
+import { ErrorHandlerService } from './shared/services/error-handler.service';
+import { JwtModule } from "@auth0/angular-jwt";
+
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +46,7 @@ import { NotFoundComponent } from './error-pages/not-found/not-found.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    ApiAuthorizationModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
+     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
@@ -67,11 +69,22 @@ import { NotFoundComponent } from './error-pages/not-found/not-found.component';
     MatCardModule,
      FormsModule,
      MatAutocompleteModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:44380"],
+        blacklistedRoutes: []
+      }
+    })
 
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },HttpClient
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerService,
+      multi: true
+    },HttpClient
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">Se connecter</h1>
+
+    <div *ngIf="showError" class="alert alert-danger" role="alert">
+      {{errorMessage}}
+    </div>
+
+    <form [formGroup]="loginForm" autocomplete="off" novalidate>
+      <mat-grid-list cols="12" rowHeight="50px" gutterSize="15px">
+
+        <mat-grid-tile colspan="12">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input matInput placeholder="" formControlName="username">
+            <mat-error *ngIf="validateControl('username') && hasError('username', 'required')">Nom d'utilisateur est obligatoire</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="12">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Mot de passe :</mat-label>
+            <input matInput type="password" placeholder="" formControlName="password">
+            <mat-error *ngIf="validateControl('password') && hasError('password', 'required')">Mot de passe est obligatoire</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="6">
+          <button mat-raised-button color="primary" (click)="loginUser(loginForm.value)" class="full-width" [disabled]="!loginForm.valid">Se connecter</button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="6">
+          <button mat-stroked-button color="primary" [routerLink]="['/authentication/register']" class="full-width">Creer un compte</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+  </div>
+</div>
+
+

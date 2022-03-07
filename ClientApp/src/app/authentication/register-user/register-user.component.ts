@@ -2,6 +2,7 @@ import { AuthenticationService } from './../../shared/services/authentication.se
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserForRegistrationDto } from '../../../_interfaces/user/UserForRegistrationDto';
+import { PasswordConfirmationValidatorService } from '../../shared/custom-validators/password-confirmation-validator.service';
 
 @Component({
   selector: 'app-register-user',
@@ -10,8 +11,9 @@ import { UserForRegistrationDto } from '../../../_interfaces/user/UserForRegistr
 })
 export class RegisterUserComponent implements OnInit {
   public registerForm: FormGroup;
-
-  constructor(private _authService: AuthenticationService) { }
+  public errorMessage: string = '';
+  public showError: boolean;
+  constructor(private _authService: AuthenticationService, private _passConfValidator: PasswordConfirmationValidatorService) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -21,6 +23,8 @@ export class RegisterUserComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
       confirm: new FormControl('')
     });
+    this.registerForm.get('confirm').setValidators([Validators.required,
+    this._passConfValidator.validateConfirmPassword(this.registerForm.get('password'))]);
   }
 
   public validateControl = (controlName: string) => {
@@ -32,6 +36,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   public registerUser = (registerFormValue) => {
+    this.showError = false;
     const formValues = { ...registerFormValue };
 
     const user: UserForRegistrationDto = {
@@ -42,12 +47,15 @@ export class RegisterUserComponent implements OnInit {
       confirmPassword: formValues.confirm
     };
 
+
     this._authService.registerUser(user)
       .subscribe(_ => {
         console.log("Successful registration");
       },
         error => {
-          console.log(error.error.errors);
+          console.log(error);
+          this.errorMessage = error;
+          this.showError = true;
         })
   }
 }
