@@ -1,20 +1,21 @@
  
-<div class="landing">
+<div class="landing m-5 m-5">
   <img src="../../assets/Capture.PNG" class="responsive">
+ 
 
-  <mat-grid-list cols="12">
+  <mat-grid-list cols="12" class="">
     <mat-grid-tile colspan="12">
-      <mat-label class="m-4 display-4">Bievenu au <b>MedFellow</b></mat-label>
+      <mat-label class="m-5 m-5 display-4">Bievenu au <b>MedFellow</b></mat-label>
     </mat-grid-tile>
   </mat-grid-list>
-
-  <mat-grid-list cols="12" class="m-4">
+ 
+  <mat-grid-list cols="12" class="m-5">
     <mat-grid-tile colspan="12">
-      <button mat-raised-button color="primary" [routerLink]="['/authentication/login']" class="w-75 h-75">Se connecter</button>
+      <button mat-raised-button color="primary" [routerLink]="['/authentication/login']" class="responsive">Se connecter</button>
     </mat-grid-tile>
 
     <mat-grid-tile colspan="12">
-      <button mat-stroked-button color="primary" [routerLink]="['/authentication/register']" class="mt-2 w-75 h-75">Creer un compte</button>
+      <button mat-stroked-button color="primary" [routerLink]="['/authentication/register']" class="responsive">Creer un compte</button>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
