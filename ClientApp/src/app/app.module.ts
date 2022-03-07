@@ -23,6 +23,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { ErrorHandlerService } from './shared/services/error-handler.service';
 import { JwtModule } from "@auth0/angular-jwt";
+import { LandingComponent } from './landing/landing.component';
 
 
 export function tokenGetter() {
@@ -39,7 +40,8 @@ export function tokenGetter() {
     InterventionFilterPipe,
     ProfileComponent,
     AutoCompleteComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -76,7 +78,8 @@ export function tokenGetter() {
         whitelistedDomains: ["localhost:44380"],
         blacklistedRoutes: []
       }
-    })
+    }),
+    
 
   ],
   providers: [
@@ -84,7 +87,7 @@ export function tokenGetter() {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorHandlerService,
       multi: true
-    },HttpClient
+    }, HttpClient
   ],
   bootstrap: [AppComponent]
 })

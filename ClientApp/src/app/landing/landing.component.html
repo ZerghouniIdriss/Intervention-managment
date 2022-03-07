@@ -1,0 +1,20 @@
+ 
+<div class="landing">
+  <img src="../../assets/Capture.PNG" class="responsive">
+
+  <mat-grid-list cols="12">
+    <mat-grid-tile colspan="12">
+      <mat-label class="m-4 display-4">Bievenu au <b>MedFellow</b></mat-label>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="12" class="m-4">
+    <mat-grid-tile colspan="12">
+      <button mat-raised-button color="primary" [routerLink]="['/authentication/login']" class="w-75 h-75">Se connecter</button>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="12">
+      <button mat-stroked-button color="primary" [routerLink]="['/authentication/register']" class="mt-2 w-75 h-75">Creer un compte</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

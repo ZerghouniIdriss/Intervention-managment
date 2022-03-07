@@ -10,7 +10,8 @@
       </mat-icon>
     </button>
     <span class="header-spacer"></span>
-    <u><a [routerLink]="'profiles'">Alami Z.</a></u>
+    <u><a [routerLink]="'profiles'">{{ userName}} </a></u>
+ 
   </mat-toolbar>
 </ng-container>
 
@@ -20,7 +21,7 @@
 
       <ng-container *ngIf="isUserAuthenticated">
 
-        <h4 class="name">{{ userName | async}}</h4>
+        <h4 class="name">{{ userName}}</h4>
         <p class="designation">Compte principal</p>
 
         <button mat-button class="menu-button"  (click)="logout()">

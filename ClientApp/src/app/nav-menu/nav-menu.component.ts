@@ -10,12 +10,13 @@ import { AuthenticationService } from '../shared/services/authentication.service
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css']
 })
-export class NavMenuComponent implements OnInit{
+export class NavMenuComponent implements OnInit {
   public isAuthenticated: Observable<boolean>;
-  public userName: Observable<string>;
+  public userName: string;
 
   public isUserAuthenticated: boolean;
-  constructor(private _authService: AuthenticationService, private _router: Router) { }
+  constructor(private _authService: AuthenticationService, private _router: Router) {
+}
 
   ngOnInit(): void {
     this._authService.authChanged
@@ -23,10 +24,8 @@ export class NavMenuComponent implements OnInit{
         this.isUserAuthenticated = res;
       })
 
-    //this.isAuthenticated = this.authorizeService.isAuthenticated();
-   // this.userName = this.authorizeService.getUser().pipe(map(u => u && u.name));
-  }
-   
+   }
+
 
   isExpanded = false;
 
@@ -42,5 +41,5 @@ export class NavMenuComponent implements OnInit{
     this._authService.logout();
     this._router.navigate(["/"]);
   }
-   
+
 }
