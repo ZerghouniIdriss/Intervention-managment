@@ -21,6 +21,7 @@ namespace Project3.Models
         public string Ref { get; set; }
         public string Motif { get; set; }
         public string Diag { get; set; }
+        public string Examen_Clinique { get; set; }
         public string Biologie_hb { get; set; }
         public string Biologie_gb { get; set; }
         public string Biologie_plg { get; set; }
