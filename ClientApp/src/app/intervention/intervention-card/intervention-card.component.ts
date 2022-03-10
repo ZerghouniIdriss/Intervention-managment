@@ -17,7 +17,9 @@ export class InterventionCardComponent implements OnInit {
   @Output() editEmitter = new EventEmitter<Intervention>();
   @Output() deleteEmitter = new EventEmitter<Intervention>();
 
+  @Input() showAction: boolean=true;
 
+  
   constructor() { }
 
   ngOnInit(): void {

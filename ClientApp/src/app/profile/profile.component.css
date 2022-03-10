@@ -1,0 +1,47 @@
+em {
+  color: #e71515;
+  font-weight: bold;
+}
+
+.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+.card {
+  margin-top: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px #cabcbc;
+}
+
+.toLeft {
+  justify-content: left;
+}
+
+.toRight {
+  justify-content: right;
+}
+
+
+.toCenter {
+  justify-content: center;
+}
+
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+
+.mat-expansion-panel {
+  background: rgb(240 240 240);
+}
+
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+mat-label {
+  color: #3f51b5;
+}

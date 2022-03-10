@@ -11,7 +11,7 @@
 
   <mat-card class="card" *ngFor="let item of items | interventionFilter:filterarg">
     <app-intervention-card [item]="item" [cliniqueList]="cliniqueList" (editEmitter)="onEdit($event)"
-                           (deleteEmitter)="onDelete($event)"></app-intervention-card>
+                           (deleteEmitter)="onDelete($event)" [showAction]="true"></app-intervention-card>
   </mat-card>
 
   <mat-grid-list cols="12" rowHeight="50px" gutterSize="15px" class='action'>

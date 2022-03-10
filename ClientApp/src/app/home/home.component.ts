@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Intervention } from '../intervention/intervention.interface';
+import { InterventionService } from '../intervention/intervention.service';
 interface ISelect {
   value: string;
   viewValue: string;
@@ -11,27 +13,30 @@ interface ISelect {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  intervention_recentes: Intervention[];
+  intervention_plannified: Intervention[];
 
-  constructor() { }
+  constructor(private interventionsService: InterventionService) { }
 
   ngOnInit(): void {
+    this.interventionsService.getAll().subscribe((data: Intervention[]) => {
+      this.intervention_recentes = data;
+    });
+    this.interventionsService.getAll().subscribe((data: Intervention[]) => {
+      this.intervention_plannified = data;
+    });
   }
 
-  periods: ISelect[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
 
   etats: ISelect[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' },
   ];
 
   cliniques: ISelect[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' },
   ];
 }

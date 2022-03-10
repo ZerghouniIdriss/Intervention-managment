@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace Project3.Controllers
 {
 
+
     [Route("[controller]")]
     [ApiController]
     public class AccountsController : ControllerBase
@@ -25,6 +26,7 @@ namespace Project3.Controllers
             _userManager = userManager;
             _mapper = mapper;
             _jwtHandler = jwtHandler;
+
 
         }
         [HttpPost("Registration")]
@@ -58,6 +60,38 @@ namespace Project3.Controllers
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
         }
+
+        [HttpGet]
+        public async Task<ApplicationUser> GetCurrentUserId()
+        {
+            ApplicationUser user = await GetCurrentUserAsync();
+            return user;
+        }
+
+
+        // PUT: api/Cliniques/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUser(string id, ApplicationUser appUserViewModel)
+        {
+            if (id != appUserViewModel.Id)
+            {
+                return BadRequest();
+            }
+
+            ApplicationUser model = await GetCurrentUserAsync();
+            model.Email = appUserViewModel.Email;
+            model.FirstName = appUserViewModel.FirstName;
+            model.LastName = appUserViewModel.LastName;
+
+            IdentityResult result = await _userManager.UpdateAsync(model);
+
+            return Ok(result);
+
+        }
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
     }
 
 }

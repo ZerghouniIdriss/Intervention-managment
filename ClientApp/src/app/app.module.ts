@@ -24,6 +24,7 @@ import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { ErrorHandlerService } from './shared/services/error-handler.service';
 import { JwtModule } from "@auth0/angular-jwt";
 import { LandingComponent } from './landing/landing.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -89,7 +90,8 @@ export function tokenGetter() {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorHandlerService,
       multi: true
-    }, HttpClient
+    }, HttpClient,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

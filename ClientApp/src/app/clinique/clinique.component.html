@@ -1,3 +1,5 @@
+<mat-label class="display-4">Gérer les clinqiues</mat-label>
+
 <mat-grid-list cols="12" rowHeight="50px" gutterSize="15px">
   <ng-container *ngFor="let item of items; let i=index">
     <mat-grid-tile colspan="8">
@@ -43,7 +45,7 @@
 </ng-container>
 <mat-grid-list cols="12" rowHeight="50px" gutterSize="15px">
   <mat-grid-tile colspan="12">
-    <button mat-stroked-button color="primary"  [disabled]="isAdding"  (click)="onAdd()" class="full-width">+ Ajouter une clinique</button>
+    <button mat-stroked-button color="primary" [disabled]="isAdding" (click)="onAdd()" class="full-width">+ Ajouter une clinique</button>
   </mat-grid-tile>
 </mat-grid-list>
 
