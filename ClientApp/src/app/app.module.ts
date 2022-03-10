@@ -7,8 +7,8 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
  import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
- import {  MatButtonModule, MatCardModule, MatDividerModule, MatGridListModule, MatInputModule, MatListModule,
-   MatSelectModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
+ import {  MatButtonModule, MatCardModule,  MatDatepickerModule,  MatDividerModule, MatGridListModule, MatInputModule, MatListModule,
+   MatNativeDateModule, MatSelectModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterventionComponent } from './intervention/intervention.component';
@@ -25,7 +25,6 @@ import { ErrorHandlerService } from './shared/services/error-handler.service';
 import { JwtModule } from "@auth0/angular-jwt";
 import { LandingComponent } from './landing/landing.component';
 
-
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -41,7 +40,8 @@ export function tokenGetter() {
     ProfileComponent,
     AutoCompleteComponent,
     NotFoundComponent,
-    LandingComponent
+    LandingComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -68,9 +68,11 @@ export function tokenGetter() {
     MatListModule,
     MatSelectModule,
     MatExpansionModule,
-    MatCardModule,
-     FormsModule,
-     MatAutocompleteModule,
+    MatCardModule, 
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule, 
     BrowserAnimationsModule,
     JwtModule.forRoot({
       config: {

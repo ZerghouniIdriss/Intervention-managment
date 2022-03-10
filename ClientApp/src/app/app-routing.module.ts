@@ -9,9 +9,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
+  { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
   { path: 'cliniques', canActivate: [AuthGuard], component: CliniqueComponent },
-  //{ path: 'profiles', component: ProfileComponent },
-  { path: 'profiles', redirectTo: '/authentication/profile', pathMatch: 'full' },
+  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
   { path: 'interventions', canActivate: [AuthGuard] , component: InterventionComponent },
   { path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
   { path: '404', component: NotFoundComponent },
