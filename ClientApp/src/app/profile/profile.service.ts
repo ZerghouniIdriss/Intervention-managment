@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
  import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IUser } from '../../api-authorization/authorize.service';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { IUser } from '../../api-authorization/authorize.service';
 export class ProfileService {
   private apiServer;
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string,) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private authenticationService: AuthenticationService) {
     this.apiServer = baseUrl;
   }
    
@@ -20,16 +21,10 @@ export class ProfileService {
       .pipe(
         catchError(this.errorHandler)
       )
-  }
+  } 
 
 
-  getCurrentUser(): Observable<IUser> {
-    return this.http.get<IUser>(this.apiServer + 'Accounts')
-      .pipe(
-        catchError(this.errorHandler)
-      )
-  }
-
+ 
 
   errorHandler(error) {
     let errorMessage = '';

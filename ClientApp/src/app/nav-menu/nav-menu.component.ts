@@ -11,7 +11,7 @@ import { AuthenticationService } from '../shared/services/authentication.service
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent implements OnInit {
-  public isAuthenticated: Observable<boolean>;
+  public isAuthenticated: boolean;
   public userName: string;
 
   public isUserAuthenticated: boolean;
@@ -19,9 +19,15 @@ export class NavMenuComponent implements OnInit {
 }
 
   ngOnInit(): void {
-    this._authService.authChanged
+    //this._authService.authChanged
+    //  .subscribe(res => {
+    //    this.isUserAuthenticated = res;
+    //  })
+ 
+
+    this._authService.getCurrentUser()
       .subscribe(res => {
-        this.isUserAuthenticated = res;
+        this.userName = res.lastName.substring(0, 1) + ". " + res.firstName ;
       })
 
    }

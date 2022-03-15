@@ -10,6 +10,7 @@ import { RegistrationResponseDto } from '../_interfaces/user/RegistrationRespons
 import { UserForAuthenticationDto } from '../_interfaces/user/UserForAuthenticationDto';
 import { UserForRegistrationDto } from '../_interfaces/user/UserForRegistrationDto';
 import { IUser } from "../_interfaces/user/iuser.interface";
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +20,7 @@ export class AuthenticationService {
   public authChanged = this._authChangeSub.asObservable();
   private userSubject: BehaviorSubject<IUser | null> = new BehaviorSubject(null);
 
-  constructor(private _http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _jwtHelper: JwtHelperService) {
+  constructor(private _http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _jwtHelper: JwtHelperService, private router: Router) {
     this.apiServer = baseUrl;
   }
 
@@ -37,12 +38,12 @@ export class AuthenticationService {
   }
   public logout = () => {
     localStorage.removeItem("token");
-    this.sendAuthStateChangeNotification(false);
-  }
+    this.router.navigateByUrl('/landing');
 
-  public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
-    this._authChangeSub.next(isAuthenticated);
+   }
+   
+  public getCurrentUser(): Observable<IUser> {
+    return this._http.get<IUser>(this.apiServer + 'Accounts/GetCurrentUser');
+      
   }
-
- 
 }

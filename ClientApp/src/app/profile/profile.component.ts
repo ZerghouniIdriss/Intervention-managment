@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthenticationService } from '../shared/services/authentication.service';
 import { IUser } from '../shared/_interfaces/user/iuser.interface';
 import { ProfileService } from './profile.service';
 
@@ -17,7 +18,7 @@ export class ProfileComponent implements OnInit {
   profile: IUser;
 
 
-  constructor(private service: ProfileService, private formBuilder: FormBuilder) {
+  constructor(private service: ProfileService, private authenticationService: AuthenticationService, private formBuilder: FormBuilder) {
   }
 
   form = this.formBuilder.group({
@@ -33,8 +34,14 @@ export class ProfileComponent implements OnInit {
   }
 
   refreshData() {
-    this.service.getCurrentUser().subscribe((data: IUser) => {
-      this.profile = data;
+    this.authenticationService.getCurrentUser().subscribe((data: IUser) => {
+    //this.profile = data;
+     this.form.patchValue({
+       id: data.id,
+       firstName: data.firstName,
+       lastName: data.lastName,
+       email: data.name
+     });
     });
   }
 
@@ -53,7 +60,7 @@ export class ProfileComponent implements OnInit {
       this.form = this.formBuilder.group({
         id: 0,
         firstName: '',
-        LasttName: '',
+        lastName: '',
         email: '',
       });
     });
@@ -66,9 +73,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onEdit(item): void {
-    this.form = this.formBuilder.group(item
-
-    );
+    this.form = this.formBuilder.group(item);
     this.isEditing = true;
   }
 

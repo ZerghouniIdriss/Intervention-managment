@@ -1,5 +1,5 @@
 
-<ng-container  *ngIf='isUserAuthenticated'>
+<ng-container  *ngIf='_authService.isUserAuthenticated()'>
   <mat-toolbar class="">
     <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened">
@@ -10,16 +10,16 @@
       </mat-icon>
     </button>
     <span class="header-spacer"></span>
-    <u><a [routerLink]="'profiles'">{{ userName}} </a></u>
+    <u><a [routerLink]="'profile'">{{ userName}} </a></u>
  
   </mat-toolbar>
 </ng-container>
 
 <ng-container class="nav-content">
   <mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav" class="">
+    <mat-sidenav #sidenav="matSidenav" class=""  (click)="sidenav.toggle()">
 
-      <ng-container *ngIf="isUserAuthenticated">
+      <ng-container *ngIf="_authService.isUserAuthenticated()">
 
         <h4 class="name">{{ userName}}</h4>
         <p class="designation">Compte principal</p>
@@ -30,7 +30,7 @@
         </button>
 
       </ng-container>
-      <ng-container *ngIf="!isUserAuthenticated">
+      <ng-container *ngIf="!_authService.isUserAuthenticated()">
 
         <button mat-button class="menu-button" [routerLink]='["/authentication/register"]'>
           <span>Creer un compte</span>
@@ -42,7 +42,7 @@
         </button>
       </ng-container>
 
-      <ng-container *ngIf='isUserAuthenticated'>
+      <ng-container *ngIf='_authService.isUserAuthenticated()'>
 
         <mat-divider></mat-divider>
 

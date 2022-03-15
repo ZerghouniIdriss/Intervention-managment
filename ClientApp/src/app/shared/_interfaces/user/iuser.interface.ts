@@ -1,6 +1,8 @@
 
 export interface IUser {
+  id?: string;
   name?: string;
-  f_name?: string;
-  l_name?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
 }
