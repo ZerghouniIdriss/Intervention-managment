@@ -1,7 +1,7 @@
 <div class="card-wrapper">
 
   <mat-card class="example-card">
-    <mat-card-title> Interventions plannifiées pour aujourd'hui  </mat-card-title>
+    <mat-card-title class="text-primary"> Interventions plannifiées pour aujourd'hui  </mat-card-title>
     <mat-card-content  [style.overflow]="'auto'" [style.height.px]="'275'">
       <mat-card class="card" *ngFor="let item of intervention_plannified | interventionFilter:filterarg">
         <app-intervention-card [item]="item" [showAction]="false"></app-intervention-card>
@@ -13,7 +13,7 @@
 
 <div class="card-wrapper">
   <mat-card class="example-card">
-    <mat-card-title> Interventions récentes</mat-card-title>
+    <mat-card-title class="text-primary"> Interventions récentes</mat-card-title>
     <mat-card-content [style.overflow]="'auto'" [style.height.px]="'275'">
       <mat-card class="card" *ngFor="let item of intervention_recentes | interventionFilter:filterarg">
         <app-intervention-card [item]="item" [showAction]="false"></app-intervention-card>

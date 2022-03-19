@@ -1,7 +1,7 @@
 
 <ng-container  *ngIf='_authService.isUserAuthenticated()'>
   <mat-toolbar class="">
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()" class="mat-primary">
       <mat-icon *ngIf="!sidenav.opened">
         menu
       </mat-icon>
@@ -10,14 +10,14 @@
       </mat-icon>
     </button>
     <span class="header-spacer"></span>
-    <u><a [routerLink]="'profile'">{{ userName}} </a></u>
+    <u><a [routerLink]="'profile'" class="text-primary">{{ userName}} </a></u>
  
   </mat-toolbar>
 </ng-container>
 
 <ng-container class="nav-content">
   <mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav" class=""  (click)="sidenav.toggle()">
+    <mat-sidenav #sidenav="matSidenav" class="bg-primary"  (click)="sidenav.toggle()">
 
       <ng-container *ngIf="_authService.isUserAuthenticated()">
 
