@@ -27,40 +27,40 @@
   <mat-card class="example-card">
     <mat-grid-list cols="12" rowHeight="50px" gutterSize="10px">
       <mat-grid-tile colspan="4">
-        <button [routerLink]="'/home'" mat-button class="menu-button">
+        <button [routerLink]="'/home'" mat-button class="menu-button mat-primary">
           <mat-icon>home</mat-icon>
         </button>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="4">
-        <button [routerLink]="'/interventions'" mat-button class="menu-button">
+        <button [routerLink]="'/interventions'" mat-button class="menu-button mat-primary">
           <mat-icon>medication</mat-icon>
         </button>
 
       </mat-grid-tile>
 
       <mat-grid-tile colspan="4">
-        <button [routerLink]="'/cliniques'" mat-button class="menu-button">
+        <button [routerLink]="'/cliniques'" mat-button class="menu-button mat-primary">
           <mat-icon>location_city</mat-icon>
         </button>
       </mat-grid-tile>
     </mat-grid-list>
 
     <mat-grid-list cols="12" rowHeight="25px" gutterSize="10px">
-      <mat-grid-tile colspan="4">
+      <mat-grid-tile colspan="4" class="text-primary">
         <button [routerLink]="'/home'" mat-button class="menu-button">
           <span>Acceuil</span>
         </button>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="4">
+      <mat-grid-tile colspan="4" class="text-primary">
         <button [routerLink]="'/interventions'" mat-button class="menu-button">
           <span>Intérventions</span>
         </button>
 
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="4">
+      <mat-grid-tile colspan="4" class="text-primary">
         <button [routerLink]="'/cliniques'" mat-button class="menu-button">
           <span>Cliniques</span>
         </button>
