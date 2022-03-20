@@ -42,7 +42,7 @@ namespace Project3.Controllers
         [HttpGet("Planned")]
         public async Task<ActionResult<IEnumerable<Intervention>>> GetPlanned()
         {
-            return await _context.Interventions.Where(x=>x.Admission_Date==DateTime.Today.Date).ToListAsync();
+            return await _context.Interventions.Where(x=>x.Admission_Date == DateTime.Today.Date).ToListAsync();
         }
 
         // GET: api/Interventions/5

@@ -15,6 +15,7 @@ export class NavMenuComponent implements OnInit {
   public userName: string;
 
   public isUserAuthenticated: boolean;
+    isReady: boolean=false;
   constructor(private _authService: AuthenticationService, private _router: Router) {
 }
 
@@ -27,7 +28,8 @@ export class NavMenuComponent implements OnInit {
 
     this._authService.getCurrentUser()
       .subscribe(res => {
-        this.userName = res.lastName.substring(0, 1) + ". " + res.firstName ;
+        this.userName = res.lastName.substring(0, 1) + ". " + res.firstName;
+        this.isReady = true;
       })
 
    }

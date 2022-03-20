@@ -1,76 +1,80 @@
+<ng-container *ngIf='isReady'>
 
-<ng-container  *ngIf='_authService.isUserAuthenticated()'>
-  <mat-toolbar class="">
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()" class="mat-primary">
-      <mat-icon *ngIf="!sidenav.opened">
-        menu
-      </mat-icon>
-      <mat-icon *ngIf="sidenav.opened">
-        close
-      </mat-icon>
-    </button>
-    <span class="header-spacer"></span>
-    <u><a [routerLink]="'profile'" class="text-primary">{{ userName}} </a></u>
- 
-  </mat-toolbar>
+  <ng-container *ngIf='_authService.isUserAuthenticated()'>
+    <mat-toolbar class="">
+      <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()" class="mat-primary">
+        <mat-icon *ngIf="!sidenav.opened">
+          menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+          close
+        </mat-icon>
+      </button>
+      <span class="header-spacer"></span>
+      <u><a [routerLink]="'profile'" class="text-primary">{{ userName}} </a></u>
+
+    </mat-toolbar>
+  </ng-container>
+
+  <ng-container class="nav-content">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav="matSidenav" class="bg-primary" (click)="sidenav.toggle()">
+
+        <ng-container *ngIf="_authService.isUserAuthenticated()">
+
+          <h4 class="name">{{ userName}}</h4>
+          <p class="designation">Compte principal</p>
+
+          <button mat-button class="menu-button" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Se déconnecter</span>
+          </button>
+
+        </ng-container>
+        <ng-container *ngIf="!_authService.isUserAuthenticated()">
+
+          <button mat-button class="menu-button" [routerLink]='["/authentication/register"]'>
+            <span>Creer un compte</span>
+          </button>
+
+          <button mat-button class="menu-button" [routerLink]='["/authentication/login"]'>
+            <mat-icon>login</mat-icon>
+            <span>Se connecter</span>
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf='_authService.isUserAuthenticated()'>
+
+          <mat-divider></mat-divider>
+
+          <button [routerLink]="'home'" mat-button class="menu-button">
+            <mat-icon>home</mat-icon>
+            <span>Acceuil</span>
+          </button>
+
+          <button [routerLink]="'interventions'" mat-button class="menu-button">
+            <mat-icon>medication</mat-icon>
+            <span>Intérventions</span>
+          </button>
+
+          <button [routerLink]="'cliniques'" mat-button class="menu-button">
+            <mat-icon>location_city</mat-icon>
+            <span>Cliniques</span>
+          </button>
+
+          <button [routerLink]="'profile'" mat-button class="menu-button">
+            <mat-icon>people_alt</mat-icon>
+            <span>Profile</span>
+          </button>
+        </ng-container>
+
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="content ">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </ng-container>
 </ng-container>
 
-<ng-container class="nav-content">
-  <mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav" class="bg-primary"  (click)="sidenav.toggle()">
-
-      <ng-container *ngIf="_authService.isUserAuthenticated()">
-
-        <h4 class="name">{{ userName}}</h4>
-        <p class="designation">Compte principal</p>
-
-        <button mat-button class="menu-button"  (click)="logout()">
-          <mat-icon>logout</mat-icon>
-          <span>Se déconnecter</span>
-        </button>
-
-      </ng-container>
-      <ng-container *ngIf="!_authService.isUserAuthenticated()">
-
-        <button mat-button class="menu-button" [routerLink]='["/authentication/register"]'>
-          <span>Creer un compte</span>
-        </button>
-
-        <button mat-button class="menu-button" [routerLink]='["/authentication/login"]'>
-          <mat-icon>login</mat-icon>
-          <span>Se connecter</span>
-        </button>
-      </ng-container>
-
-      <ng-container *ngIf='_authService.isUserAuthenticated()'>
-
-        <mat-divider></mat-divider>
-
-        <button [routerLink]="'home'" mat-button class="menu-button">
-          <mat-icon>home</mat-icon>
-          <span>Acceuil</span>
-        </button>
-
-        <button [routerLink]="'interventions'" mat-button class="menu-button">
-          <mat-icon>medication</mat-icon>
-          <span>Intérventions</span>
-        </button>
-
-        <button [routerLink]="'cliniques'" mat-button class="menu-button">
-          <mat-icon>location_city</mat-icon>
-          <span>Cliniques</span>
-        </button>
-
-        <button [routerLink]="'profile'" mat-button class="menu-button">
-          <mat-icon>people_alt</mat-icon>
-          <span>Profile</span>
-        </button>
-      </ng-container>
-
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div class="content ">
-        <router-outlet></router-outlet>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>

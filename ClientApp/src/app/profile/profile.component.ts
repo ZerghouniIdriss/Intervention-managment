@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Clinique } from '../clinique/clinique.interface';
 import { AuthenticationService } from '../shared/services/authentication.service';
+import { SharedService } from '../shared/services/shared.service';
 import { IUser } from '../shared/_interfaces/user/iuser.interface';
 import { ProfileService } from './profile.service';
 
@@ -16,9 +18,10 @@ export class ProfileComponent implements OnInit {
   filterarg = '';
   panelOpenState = false;
   profile: IUser;
+    cliniqueList: Clinique[];
 
 
-  constructor(private service: ProfileService, private authenticationService: AuthenticationService, private formBuilder: FormBuilder) {
+  constructor(private service: ProfileService, private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private sharedService: SharedService) {
   }
 
   form = this.formBuilder.group({
@@ -33,6 +36,8 @@ export class ProfileComponent implements OnInit {
     this.refreshData();
   }
 
+  
+
   refreshData() {
     this.authenticationService.getCurrentUser().subscribe((data: IUser) => {
     //this.profile = data;
@@ -43,6 +48,10 @@ export class ProfileComponent implements OnInit {
        email: data.email
      });
     });
+
+    this.sharedService.getCliniques().subscribe((data: Clinique[]) => {
+      this.cliniqueList = data
+    })
   }
 
   onSubmit(): void {
