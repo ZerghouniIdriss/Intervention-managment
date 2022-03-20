@@ -35,7 +35,7 @@ export class InterventionCardComponent implements OnInit {
 
   getCliniqueNamebyId(id) {
     if (this.cliniqueList) {
-    return this.cliniqueList.find(x => x.id==id).name;
+    return this.cliniqueList.find(x => x.id===id);
     }
   }
 }

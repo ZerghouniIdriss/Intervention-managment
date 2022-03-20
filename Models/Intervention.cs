@@ -16,7 +16,7 @@ namespace Project3.Models
         public int Id { get; set; }
         public string F_Name { get; set; }
         public string L_Name { get; set; }
-        public string Admission_Date { get; set; }
+        public DateTime Admission_Date { get; set; }
         public int Clinique { get; set; }
         public string Ref { get; set; }
         public string Motif { get; set; }
@@ -43,6 +43,8 @@ namespace Project3.Models
         public string MAJ { get; set; }
         public double Honoraire { get; set; }
         public double Remise { get; set; }
+        public DateTime Update_Date { get; set; }
+
         public int Status { get; set; }
     }
 }

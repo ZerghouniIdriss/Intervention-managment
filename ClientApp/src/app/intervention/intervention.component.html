@@ -66,19 +66,21 @@
       <mat-grid-tile colspan="4">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Date d'admission</mat-label>
-          <input matInput [matDatepicker]="admission_Date"  (focus)="admission_Date.open()" >
+          <input matInput [matDatepicker]="admission_Date" (focus)="admission_Date.open()" formControlName="admission_Date">
           <mat-datepicker-toggle matSuffix [for]="admission_Date"></mat-datepicker-toggle>
           <mat-datepicker #admission_Date></mat-datepicker>
         </mat-form-field>
       </mat-grid-tile>
-       
+
+
 
       <mat-grid-tile colspan="8">
-        <mat-form-field class="full-width" appearance="fill">
-          <mat-label>Motif d'intervention</mat-label>
-          <input matInput placeholder="" formControlName="motif">
-        </mat-form-field>
+        <app-auto-complete class="full-width" [options]="motifs_options" [label]="'Motif de consultation'" [control]="form.get('motif')"></app-auto-complete>
       </mat-grid-tile>
+
+
+      
+
       <mat-grid-tile colspan="6">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Diag</mat-label>
@@ -183,8 +185,8 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile colspan="6">
-        <app-auto-complete class="full-width" [options]="mutualiste_options" [control]="form.get('mutualiste')"></app-auto-complete>
+      <mat-grid-tile colspan="6"> 
+        <app-auto-complete class="full-width"  [label]="'Mutualiste'" [options]="mutualiste_options" [control]="form.get('mutualiste')" ></app-auto-complete>
       </mat-grid-tile>
 
       <mat-grid-tile colspan="12">

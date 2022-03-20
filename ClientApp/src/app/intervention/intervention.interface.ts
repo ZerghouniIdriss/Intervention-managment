@@ -2,7 +2,7 @@ export interface Intervention {
   id?: number;
   f_Name: string;
   l_Name: string;
-  admission_Date: string;
+  admission_Date?: Date;
   clinique?: number;
   ref: string;
   motif: string;

@@ -19,10 +19,10 @@ export class HomeComponent implements OnInit {
   constructor(private interventionsService: InterventionService) { }
 
   ngOnInit(): void {
-    this.interventionsService.getAll().subscribe((data: Intervention[]) => {
+    this.interventionsService.getRecents().subscribe((data: Intervention[]) => {
       this.intervention_recentes = data;
     });
-    this.interventionsService.getAll().subscribe((data: Intervention[]) => {
+    this.interventionsService.getPlanned().subscribe((data: Intervention[]) => {
       this.intervention_plannified = data;
     });
   }

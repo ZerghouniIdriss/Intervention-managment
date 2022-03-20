@@ -31,6 +31,20 @@ namespace Project3.Controllers
             return await _context.Interventions.ToListAsync();
         }
 
+        // GET: api/Interventions/Recents
+        [HttpGet("Recents")]
+        public async Task<ActionResult<IEnumerable<Intervention>>> GetRecents()
+        {
+            return await _context.Interventions.Where(x => x.Update_Date == DateTime.Today.Date).ToListAsync();
+        }
+
+        // GET: api/Interventions/Planned
+        [HttpGet("Planned")]
+        public async Task<ActionResult<IEnumerable<Intervention>>> GetPlanned()
+        {
+            return await _context.Interventions.Where(x=>x.Admission_Date==DateTime.Today.Date).ToListAsync();
+        }
+
         // GET: api/Interventions/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Intervention>> GetIntervention(int id)
@@ -55,6 +69,8 @@ namespace Project3.Controllers
             {
                 return BadRequest();
             }
+
+            intervention.Update_Date = DateTime.Today.Date;
 
             _context.Entry(intervention).State = EntityState.Modified;
 
@@ -83,6 +99,7 @@ namespace Project3.Controllers
         [HttpPost]
         public async Task<ActionResult<Intervention>> PostIntervention(Intervention intervention)
         {
+            intervention.Update_Date = DateTime.Today.Date;
             _context.Interventions.Add(intervention);
             await _context.SaveChangesAsync();
 

@@ -8,6 +8,7 @@ import { Intervention } from './intervention.interface';
   providedIn: 'root'
 })
 export class InterventionService {
+ 
   private apiServer;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string,) {
@@ -46,6 +47,20 @@ export class InterventionService {
   }
 
   /** CRUD END */
+
+  getRecents(): Observable<Intervention[]> {
+    return this.http.get<Intervention[]>(this.apiServer + 'Interventions/Recents')
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+  getPlanned(): Observable<Intervention[]> {
+    return this.http.get<Intervention[]>(this.apiServer + 'Interventions/Planned')
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
 
   errorHandler(error) {
     let errorMessage = '';

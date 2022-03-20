@@ -8,12 +8,12 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="3">
       <div class="text-inside-grid-right">
-        {{item.admission_Date}}
+        {{item.admission_Date | date:'mediumDate':'fr'}}
       </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="3">
       <div class="text-inside-grid-left">
-        {{getCliniqueNamebyId(item.clinique)}}
+        {{getCliniqueNamebyId(item.clinique)?.name}}
         <br>
         {{item.ref}}
       </div>

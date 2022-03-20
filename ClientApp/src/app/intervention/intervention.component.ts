@@ -17,11 +17,14 @@ export class InterventionComponent {
   isEditing = false;
   isNew = false;
   filterarg = '';
-  private form: FormGroup;
   panelOpenState = false;
 
-  mutualiste_options: string[] = ['CPA','BLOCK','HOSPIT','URGENCE'];
+  motifs_options: string[] = ['CPA', 'BLOCK', 'HOSPIT', 'URGENCE'];
 
+  mutualiste_options: string[] = ['PAYANT', 'Cnss', 'Cnops', 'Far'];
+
+ 
+ 
   cliniqueList: Clinique[];
 
   statusList: DropDownItem[]=[{
@@ -36,10 +39,43 @@ export class InterventionComponent {
   ];
 
 
-
   constructor(private service: InterventionService, private sharedService: SharedService, private formBuilder: FormBuilder) {
   }
 
+  form = this.formBuilder.group({
+    id: 0,
+    f_Name: '',
+    l_Name: '',
+    admission_Date: '',
+    clinique: 0,
+    ref: '',
+    motif: '',
+    diag: '',
+    examen_Clinique: '',
+    biologie_hb: '',
+    biologie_gb: '',
+    biologie_plg: '',
+    biologie_uree: '',
+    biologie_crea: '',
+    biologie_na: '',
+    biologie_k: '',
+    biologie_ca: '',
+    biologie_glycemie: '',
+    biologie_tp: '',
+    biologie_inr: '',
+    biologie_tck: '',
+    biologie_crp: '',
+    biologie_other: '',
+    radiologie: '',
+    operateur: '',
+    mutualiste: '',
+    conclusion: '',
+    maj: '',
+    honoraire: 0,
+    remise: 0,
+    status: 0
+  });
+ 
   ngOnInit() {
     this.refreshData();
     this.sharedService.getCliniques().subscribe((data: Clinique[]) => {

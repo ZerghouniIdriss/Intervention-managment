@@ -35,6 +35,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20220319210837_plannedAndRecentDate.cs" />
+    <Compile Remove="Data\Migrations\20220319210837_plannedAndRecentDate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\src\app\error-pages\" />
   </ItemGroup>
 

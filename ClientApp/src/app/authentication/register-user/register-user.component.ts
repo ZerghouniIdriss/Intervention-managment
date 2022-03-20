@@ -52,7 +52,7 @@ export class RegisterUserComponent implements OnInit {
     this._authService.registerUser(user)
       .subscribe(_ => {
         console.log("Successful registration");
-        this._router.navigate(["login"]);
+        this._router.navigate(["/login"]);
 
 
       },
