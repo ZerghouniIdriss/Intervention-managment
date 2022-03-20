@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Project3.Data;
 using Project3.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Project3.Controllers
 {
@@ -27,7 +28,7 @@ namespace Project3.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Clinique>>> GetCliniques()
         {
-            return await _context.Cliniques.ToListAsync();
+            return await _context.Cliniques.Where(x=>  x.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToListAsync();
         }
 
         // GET: api/Cliniques/5
@@ -82,6 +83,8 @@ namespace Project3.Controllers
         [HttpPost]
         public async Task<ActionResult<Clinique>> PostClinique(Clinique clinique)
         {
+            clinique.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             _context.Cliniques.Add(clinique);
             await _context.SaveChangesAsync();
 

@@ -1,4 +1,4 @@
-﻿export interface Clinique {
+export interface Clinique {
     id?: number;
-    name: string;
+  name?: string;
 }

@@ -10,5 +10,9 @@ namespace Project3.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public List<Intervention> Interventions { get; set; }
+        public List<Clinique> Cliniques { get; set; }
+
     }
 }

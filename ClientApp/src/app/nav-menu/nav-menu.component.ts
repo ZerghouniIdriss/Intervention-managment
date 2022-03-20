@@ -15,17 +15,14 @@ export class NavMenuComponent implements OnInit {
   public userName: string;
 
   public isUserAuthenticated: boolean;
-    isReady: boolean=false;
+  isReady: boolean = false;
+  isExpanded = false;
+
   constructor(private _authService: AuthenticationService, private _router: Router) {
 }
 
   ngOnInit(): void {
-    //this._authService.authChanged
-    //  .subscribe(res => {
-    //    this.isUserAuthenticated = res;
-    //  })
- 
-
+  
     this._authService.getCurrentUser()
       .subscribe(res => {
         this.userName = res.lastName.substring(0, 1) + ". " + res.firstName;
@@ -34,8 +31,6 @@ export class NavMenuComponent implements OnInit {
 
    }
 
-
-  isExpanded = false;
 
   collapse() {
     this.isExpanded = false;

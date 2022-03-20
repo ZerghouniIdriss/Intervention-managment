@@ -46,5 +46,8 @@ namespace Project3.Models
         public DateTime Update_Date { get; set; }
 
         public int Status { get; set; }
+
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

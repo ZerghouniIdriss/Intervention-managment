@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -28,21 +29,25 @@ namespace Project3.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Intervention>>> GetInterventions()
         {
-            return await _context.Interventions.ToListAsync();
+              User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            return await _context.Interventions.Where(x=>x.UserId==User.FindFirstValue(ClaimTypes.NameIdentifier)).ToListAsync();
         }
 
         // GET: api/Interventions/Recents
         [HttpGet("Recents")]
         public async Task<ActionResult<IEnumerable<Intervention>>> GetRecents()
         {
-            return await _context.Interventions.Where(x => x.Update_Date == DateTime.Today.Date).ToListAsync();
+            return await _context.Interventions.Where(x => x.Update_Date == DateTime.Today.Date &&
+            x.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToListAsync();
         }
 
         // GET: api/Interventions/Planned
         [HttpGet("Planned")]
         public async Task<ActionResult<IEnumerable<Intervention>>> GetPlanned()
         {
-            return await _context.Interventions.Where(x=>x.Admission_Date == DateTime.Today.Date).ToListAsync();
+            return await _context.Interventions.Where(x=>x.Admission_Date == DateTime.Today.Date &&
+            x.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToListAsync();
         }
 
         // GET: api/Interventions/5
@@ -100,6 +105,7 @@ namespace Project3.Controllers
         public async Task<ActionResult<Intervention>> PostIntervention(Intervention intervention)
         {
             intervention.Update_Date = DateTime.Today.Date;
+            intervention.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             _context.Interventions.Add(intervention);
             await _context.SaveChangesAsync();
 
