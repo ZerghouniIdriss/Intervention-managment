@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   panelOpenState = false;
   profile: IUser;
     cliniqueList: Clinique[];
-
+  showError = false;
 
   constructor(private service: ProfileService, private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private sharedService: SharedService) {
   }

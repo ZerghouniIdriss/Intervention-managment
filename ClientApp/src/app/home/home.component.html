@@ -3,7 +3,7 @@
   <mat-card class="example-card">
     <mat-card-title class="text-primary"> Interventions plannifiées pour aujourd'hui  </mat-card-title>
     <mat-card-content [style.overflow]="'auto'" [style.height.px]="'275'">
-      <mat-card class="card" *ngFor="let item of intervention_plannified | interventionFilter:filterarg">
+      <mat-card class="card" *ngFor="let item of intervention_plannified">
         <app-intervention-card [item]="item" [showAction]="false" [cliniqueList]="cliniqueList"></app-intervention-card>
       </mat-card>
       <mat-card class="card" *ngIf="intervention_plannified.length<1">
@@ -18,7 +18,7 @@
   <mat-card class="example-card">
     <mat-card-title class="text-primary"> Interventions récentes</mat-card-title>
     <mat-card-content [style.overflow]="'auto'" [style.height.px]="'275'">
-      <mat-card class="card" *ngFor="let item of intervention_recentes | interventionFilter:filterarg">
+      <mat-card class="card" *ngFor="let item of intervention_recentes">
         <app-intervention-card [item]="item" [showAction]="false" [cliniqueList]="cliniqueList"></app-intervention-card>
       </mat-card>
       <mat-card class="card" *ngIf="intervention_recentes.length<1">
