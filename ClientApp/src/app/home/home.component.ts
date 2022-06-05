@@ -13,8 +13,8 @@ interface ISelect {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  intervention_recentes: Intervention[];
-  intervention_plannified: Intervention[];
+  intervention_recentes: Intervention[] = [];
+  intervention_plannified: Intervention[] = [];
 
   constructor(private interventionsService: InterventionService) { }
 

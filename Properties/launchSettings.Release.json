@@ -1,0 +1,33 @@
+﻿{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "https://medfellow.azurewebsites.net/Project3",
+      "sslPort": 0
+    },
+    "iisExpress": {
+      "applicationUrl": "https://medfellow.azurewebsites.net:53167",
+      "sslPort": 44380
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "ancmHostingModel": "OutOfProcess"
+    },
+    "Project3": {
+      "commandName": "IIS",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Release"
+      },
+      "ancmHostingModel": "OutOfProcess",
+      "applicationUrl": "https://medfellow.azurewebsites.net:5001;http://medfellow.azurewebsites.net:5000"
+    }
+  }
+}

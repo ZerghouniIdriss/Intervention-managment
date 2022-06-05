@@ -49,8 +49,8 @@ export class CliniqueComponent {
 
   onDelete(index: any): void {
     this.service.delete(index).subscribe(res => {
-      this.items.splice(index, 1);
     });
+    this.refreshData();
   }
 
   onCancel(): void {
@@ -60,6 +60,8 @@ export class CliniqueComponent {
   private resetForm() {
     this.form.reset();
     this.isAdding = false;
+    this.refreshData();
+
   }
    
 }

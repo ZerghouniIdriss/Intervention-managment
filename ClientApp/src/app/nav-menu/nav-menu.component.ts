@@ -26,11 +26,8 @@ export class NavMenuComponent implements OnInit {
     this._authService.getCurrentUser()
       .subscribe(res => {
         this.userName = res.lastName.substring(0, 1) + ". " + res.firstName;
-        this.isReady = true;
       })
-
    }
-
 
   collapse() {
     this.isExpanded = false;
