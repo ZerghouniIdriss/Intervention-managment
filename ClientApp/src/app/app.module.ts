@@ -78,7 +78,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ["localhost:44380"],
+        whitelistedDomains: ["localhost:44380", "medfellow.azurewebsites.net", "medfellow.azurewebsites.net:44380"],
         blacklistedRoutes: []
       }
     }),
