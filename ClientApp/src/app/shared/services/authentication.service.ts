@@ -16,9 +16,6 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
   apiServer: string;
-  private _authChangeSub = new Subject<boolean>()
-  public authChanged = this._authChangeSub.asObservable();
-  private userSubject: BehaviorSubject<IUser | null> = new BehaviorSubject(null);
 
   constructor(private _http: HttpClient, @Inject('BASE_URL') baseUrl: string, private _jwtHelper: JwtHelperService, private router: Router) {
     this.apiServer = baseUrl;
@@ -39,6 +36,7 @@ export class AuthenticationService {
   public logout = () => {
     localStorage.removeItem("token");
     this.router.navigateByUrl('/landing');
+    //Call backend for logout
 
    }
    

@@ -2,7 +2,9 @@ export interface Intervention {
   id?: number;
   f_Name: string;
   l_Name: string;
+  age?: number;
   admission_Date?: Date;
+  sortie_Date?: Date;
   clinique?: number;
   ref: string;
   motif: string;
@@ -27,6 +29,8 @@ export interface Intervention {
   mutualiste: string;
   conclusion: string;
   maj: string;
+  rg?: string;
+  nr?: string;
   honoraire?: number;
   remise?: number;
   status?: number;

@@ -5,6 +5,7 @@ import { InterventionService } from './intervention.service';
 import { Clinique } from '../clinique/clinique.interface';
 import { SharedService } from '../shared/services/shared.service';
 import { DropDownItem } from '../shared/_interfaces/drop-down-item.interfaces';
+import { AlertService } from '../shared/_alert/alert.service';
 
 @Component({
   selector: 'app-intervention',
@@ -12,7 +13,7 @@ import { DropDownItem } from '../shared/_interfaces/drop-down-item.interfaces';
   styleUrls: ['./intervention.component.css']
 })
 export class InterventionComponent {
-
+  form: FormGroup;
   items: Intervention[];
   isEditing = false;
   isNew = false;
@@ -22,8 +23,6 @@ export class InterventionComponent {
   motifs_options: string[] = ['CPA', 'BLOCK', 'HOSPIT', 'URGENCE'];
 
   mutualiste_options: string[] = ['PAYANT', 'Cnss', 'Cnops', 'Far'];
-
- 
  
   cliniqueList: Clinique[];
 
@@ -37,72 +36,102 @@ export class InterventionComponent {
    },
 
   ];
+  selectedClinique=-1;
 
 
-  constructor(private service: InterventionService, private sharedService: SharedService, private formBuilder: FormBuilder) {
+  constructor(private service: InterventionService, private sharedService: SharedService, private formBuilder: FormBuilder, protected alertService: AlertService) {
   }
 
-  form = this.formBuilder.group({
-    id: 0,
-    f_Name: '',
-    l_Name: '',
-    admission_Date: '',
-    clinique: 0,
-    ref: '',
-    motif: '',
-    diag: '',
-    examen_Clinique: '',
-    biologie_hb: '',
-    biologie_gb: '',
-    biologie_plg: '',
-    biologie_uree: '',
-    biologie_crea: '',
-    biologie_na: '',
-    biologie_k: '',
-    biologie_ca: '',
-    biologie_glycemie: '',
-    biologie_tp: '',
-    biologie_inr: '',
-    biologie_tck: '',
-    biologie_crp: '',
-    biologie_other: '',
-    radiologie: '',
-    operateur: '',
-    mutualiste: '',
-    conclusion: '',
-    maj: '',
-    honoraire: 0,
-    remise: 0,
-    status: 0
-  });
- 
+  initializeForm() {
+    return this.formBuilder.group({
+      id: 0,
+      f_Name: '',
+      l_Name: '',
+      age: 0,
+      admission_Date: '',
+      sortie_Date: '',
+      clinique: 0,
+      ref: '',
+      motif: '',
+      diag: '',
+      examen_Clinique: '',
+      biologie_hb: '',
+      biologie_gb: '',
+      biologie_plg: '',
+      biologie_uree: '',
+      biologie_crea: '',
+      biologie_na: '',
+      biologie_k: '',
+      biologie_ca: '',
+      biologie_glycemie: '',
+      biologie_tp: '',
+      biologie_inr: '',
+      biologie_tck: '',
+      biologie_crp: '',
+      biologie_other: '',
+      radiologie: '',
+      operateur: '',
+      mutualiste: '',
+      conclusion: '',
+      maj: '',
+      rg: '',
+      nr: '',
+      honoraire: 0,
+      remise: 0,
+      status: 1,
+
+    });
+
+  }
+  
   ngOnInit() {
+    this.form = this.initializeForm();
     this.refreshData();
+    this.clearFilter();
     this.sharedService.getCliniques().subscribe((data: Clinique[]) => {
-      this.cliniqueList = data
+      this.cliniqueList = data,
+        this.cliniqueList.unshift({
+          id:-1,
+          name:"Toutes les cliniques"
+        })
     })
   }
 
   refreshData() {
     this.service.getAll().subscribe((data: Intervention[]) => {
-      this.items = data;
+      if (this.selectedClinique > -1) {
+        this.items = data.filter(i => i.clinique === this.selectedClinique);
+      } else {
+        this.items = data;
+      }
     });
   }
 
+  clearFilter(): void{
+  this.selectedClinique = -1;
+}
   onSubmit(): void {
     if (this.isNew) {
       this.service.create(this.form.value).subscribe(res => {
         console.warn('Creation has been submitted', this.form.value);
-        this.items.push(res);
+         this.alertService.success('Intervention crée avec succés', {
+          autoClose: true,
+          keepAfterRouteChange: false
+        })
         this.resetForm();
+        this.refreshData();
+
       })
     }
     else {
       this.service.update(this.form.value).subscribe(res => {
         console.warn('Update has been submitted', this.form.value);
-        let itemIndex = this.items.findIndex(item => item.id == this.form.value.id);
-        this.items[itemIndex] = this.form.value;
+        this.alertService.success('Intervention modifiée avec succés', {
+          autoClose: true,
+          keepAfterRouteChange: false
+        })
         this.resetForm();
+        this.refreshData();
       });
     }
   }
@@ -112,46 +141,14 @@ export class InterventionComponent {
     this.isEditing = true;
     this.isNew = true;
     setTimeout(() => {
-      this.form = this.formBuilder.group({
-        id: 0,
-        f_Name: '',
-        l_Name: '',
-        admission_Date: '',
-        clinique: 0,
-        ref: '',
-        motif: '',
-        diag: '',
-        examen_Clinique: '',
-        biologie_hb: '',
-        biologie_gb: '',
-        biologie_plg: '',
-        biologie_uree: '',
-        biologie_crea: '',
-        biologie_na: '',
-        biologie_k: '',
-        biologie_ca: '',
-        biologie_glycemie: '',
-        biologie_tp: '',
-        biologie_inr: '',
-        biologie_tck: '',
-        biologie_crp: '',
-        biologie_other: '',
-        radiologie: '',
-        operateur: '',
-        mutualiste: '',
-        conclusion: '',
-        maj: '',
-        honoraire: 0,
-        remise: 0,
-        status: 0
-      });
+      this.form = this.initializeForm();
     });
 
   }
 
   onDelete(index): void {
     this.service.delete(index).subscribe(res => {
-      this.items.splice(index, 1);
+      this.refreshData();
     });
   }
 
@@ -166,10 +163,16 @@ export class InterventionComponent {
     this.isEditing = true;
   }
 
-
+  onCliniqueChange(clinique): void {
+    console.log(this.selectedClinique);
+      this.selectedClinique = clinique.value;
+      this.refreshData();
+  }
+ 
 
   private resetForm() {
     this.form.reset();
+    this.initializeForm();
     this.isNew = false;
     this.isEditing = false;
   }

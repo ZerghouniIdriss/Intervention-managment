@@ -1,14 +1,19 @@
 <mat-card-content>
-  <mat-grid-list cols="12" rowHeight="50px" gutterSize="15px">
+  <mat-grid-list cols="12" rowHeight="50px" gutterSize="10px">
     <mat-grid-tile colspan="3">
       <div class="text-inside-grid-left">{{item.id}} </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="6">
-      <div class="text-inside-grid-left">{{item.f_Name}} {{item.l_Name}}</div>
+      <div class="text-inside-grid-left cursor" (click)="onEditItem(item)">
+        {{item.f_Name}} {{item.l_Name}}
+        <br>
+        {{item.age >0 ? item.age : '- ' }} ans
+      </div>
+      
     </mat-grid-tile>
     <mat-grid-tile colspan="3">
       <div class="text-inside-grid-right">
-        {{item.admission_Date | date:'mediumDate':'fr'}}
+        {{item.sortie_Date | date:'mediumDate':'fr'}}
       </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="3">
@@ -22,7 +27,7 @@
       <div class="text-inside-grid-left">
         {{item.motif}}
         <br>
-        {{item.status}}
+        {{item.admission_Date | date:'mediumDate':'fr'}}
       </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="1">

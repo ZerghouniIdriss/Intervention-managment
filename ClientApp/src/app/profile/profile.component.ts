@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Clinique } from '../clinique/clinique.interface';
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { SharedService } from '../shared/services/shared.service';
+import { AlertService } from '../shared/_alert/alert.service';
 import { IUser } from '../shared/_interfaces/user/iuser.interface';
 import { ProfileService } from './profile.service';
 
@@ -13,7 +14,7 @@ import { ProfileService } from './profile.service';
 })
 export class ProfileComponent implements OnInit {
 
-
+  form: FormGroup;
   isEditing = false;
   filterarg = '';
   panelOpenState = false;
@@ -21,18 +22,20 @@ export class ProfileComponent implements OnInit {
     cliniqueList: Clinique[];
   showError = false;
 
-  constructor(private service: ProfileService, private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private sharedService: SharedService) {
+  constructor(private service: ProfileService, private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private sharedService: SharedService, protected alertService: AlertService) {
   }
 
-  form = this.formBuilder.group({
-    id: 0,
-    firstName: '',
-    lastName: '',
-    email: '',
-
-  });
+  initializeForm() {
+    return this.formBuilder.group({
+      id: 0,
+      firstName: '',
+      lastName: '',
+      email: '',
+    });}
+    
 
   ngOnInit() {
+    this.form= this.initializeForm();
     this.refreshData();
   }
 
@@ -49,15 +52,21 @@ export class ProfileComponent implements OnInit {
      });
     });
 
-    this.sharedService.getCliniques().subscribe((data: Clinique[]) => {
-      this.cliniqueList = data
-    })
+    
   }
 
   onSubmit(): void {
     this.service.updateCurrentUser(this.form.value).subscribe(res => {
+
       console.warn('Update has been submitted', this.form.value);
+      this.alertService.success('Profile modifié avec succés', {
+        autoClose: true,
+        keepAfterRouteChange: false
+      })
+
       this.resetForm();
+      this.refreshData();
+
     });
 
   }
@@ -66,12 +75,7 @@ export class ProfileComponent implements OnInit {
   onAdd(): void {
     this.isEditing = true;
     setTimeout(() => {
-      this.form = this.formBuilder.group({
-        id: 0,
-        firstName: '',
-        lastName: '',
-        email: '',
-      });
+      this.form = this.initializeForm();
     });
 
   }
@@ -79,6 +83,7 @@ export class ProfileComponent implements OnInit {
 
   onCancel(): void {
     this.resetForm();
+    this.refreshData();
   }
 
   onEdit(item): void {

@@ -25,6 +25,7 @@ import { ErrorHandlerService } from './shared/services/error-handler.service';
 import { JwtModule } from "@auth0/angular-jwt";
 import { LandingComponent } from './landing/landing.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AlertComponent } from './shared/_alert/alert.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -42,7 +43,8 @@ export function tokenGetter() {
     AutoCompleteComponent,
     NotFoundComponent,
     LandingComponent,
-    ProfileComponent
+    ProfileComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -81,8 +83,7 @@ export function tokenGetter() {
         whitelistedDomains: ["localhost:44380", "medfellow.azurewebsites.net", "medfellow.azurewebsites.net:44380"],
         blacklistedRoutes: []
       }
-    }),
-    
+    }), 
 
   ],
   providers: [

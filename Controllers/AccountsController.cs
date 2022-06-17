@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -62,8 +63,13 @@ namespace Project3.Controllers
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
         }
- 
 
+        [HttpPost("Logout")]
+        [Authorize]
+        public ActionResult Logout()
+        {
+            return Ok();
+        }
 
         [HttpGet("GetUserByEmail/{email}")]
         public async Task<ApplicationUser> GetUserByEmail(string email)

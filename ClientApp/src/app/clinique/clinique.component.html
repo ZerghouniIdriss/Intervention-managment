@@ -1,6 +1,6 @@
 <mat-label class="page-title text-primary">Gérer les clinqiues</mat-label>
 
-<mat-grid-list cols="12" rowHeight="50px" gutterSize="15px">
+<mat-grid-list cols="12" rowHeight="50px" gutterSize="10px">
   <ng-container *ngFor="let item of items; let i=index">
     <mat-grid-tile colspan="8">
       <span>{{ item.name }} </span>
@@ -21,7 +21,7 @@
 </mat-grid-list>
 
 <ng-container *ngIf="isAdding">
-  <mat-grid-list cols="12" rowHeight="50px" gutterSize="15px">
+  <mat-grid-list cols="12" rowHeight="50px" gutterSize="10px">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-grid-tile colspan="8">
         <mat-form-field class="full-width" appearance="fill">
@@ -43,10 +43,11 @@
     </form>
   </mat-grid-list>
 </ng-container>
-<mat-grid-list cols="12" rowHeight="50px" gutterSize="15px">
+<mat-grid-list cols="12" rowHeight="50px" gutterSize="10px">
   <mat-grid-tile colspan="12">
-    <button mat-stroked-button color="primary" [disabled]="isAdding" (click)="onAdd()" class="full-width">+ Ajouter une clinique</button>
+    <button mat-stroked-button color="primary" [hidden]="isAdding" (click)="onAdd()" class="full-width">+ Ajouter une clinique</button>
   </mat-grid-tile>
+
 </mat-grid-list>
 
 

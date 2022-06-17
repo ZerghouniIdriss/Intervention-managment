@@ -16,7 +16,10 @@ namespace Project3.Models
         public int Id { get; set; }
         public string F_Name { get; set; }
         public string L_Name { get; set; }
-        public DateTime Admission_Date { get; set; }
+        public int Age { get; set; }
+        public DateTime? Admission_Date { get; set; }
+        public DateTime? Sortie_Date { get; set; }
+
         public int Clinique { get; set; }
         public string Ref { get; set; }
         public string Motif { get; set; }
@@ -41,12 +44,12 @@ namespace Project3.Models
         public string Mutualiste { get; set; }
         public string Conclusion { get; set; }
         public string MAJ { get; set; }
+        public string RG { get; set; }
+        public string NR { get; set; }
         public double Honoraire { get; set; }
         public double Remise { get; set; }
         public DateTime Update_Date { get; set; }
-
         public int Status { get; set; }
-
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
     }

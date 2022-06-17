@@ -31,7 +31,7 @@ export class CliniqueService {
       )
   }
 
-  create(item): Observable<Clinique> {
+  create(item: Clinique): Observable<Clinique> {
     return this.http.post<Clinique>(this.apiServer + 'Cliniques', item)
       .pipe(
         catchError(this.errorHandler)
@@ -49,12 +49,12 @@ export class CliniqueService {
 
   errorHandler(error) {
     let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
+    if (error instanceof ErrorEvent) {
       // Get client-side error
-      errorMessage = error.error.message;
+      errorMessage = error.message;
     } else {
       // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.title}`;
     }
     console.log(errorMessage);
     return throwError(errorMessage);

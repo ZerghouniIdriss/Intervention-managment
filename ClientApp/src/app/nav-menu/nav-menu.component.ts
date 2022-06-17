@@ -19,14 +19,14 @@ export class NavMenuComponent implements OnInit {
   isExpanded = false;
 
   constructor(private _authService: AuthenticationService, private _router: Router) {
-}
-
-  ngOnInit(): void {
-  
     this._authService.getCurrentUser()
       .subscribe(res => {
         this.userName = res.lastName.substring(0, 1) + ". " + res.firstName;
-      })
+    })
+}
+
+  ngOnInit(): void { 
+    
    }
 
   collapse() {

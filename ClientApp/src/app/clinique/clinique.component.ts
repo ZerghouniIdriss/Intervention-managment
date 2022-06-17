@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Clinique } from './clinique.interface';
 import { CliniqueService } from './clinique.service';
+import { AlertService } from '../shared/_alert/alert.service';
 
 @Component({
   selector: 'app-clinique',
@@ -15,7 +16,7 @@ export class CliniqueComponent {
   public isAdding: boolean = false;
   private apiServer;
 
-  constructor(private service: CliniqueService, private formBuilder: FormBuilder) {
+  constructor(private service: CliniqueService, private formBuilder: FormBuilder, protected alertService: AlertService) {
   
   }
 
@@ -37,6 +38,10 @@ export class CliniqueComponent {
   onSubmit(): void {
     this.service.create(this.form.value).subscribe(res => {
       console.warn('Creation has been submitted', this.form.value);
+      this.alertService.success('Clinique crée avec succés', {
+        autoClose: true,
+        keepAfterRouteChange: false
+      })
       this.items.push(res);
       this.resetForm();
     })
@@ -49,8 +54,8 @@ export class CliniqueComponent {
 
   onDelete(index: any): void {
     this.service.delete(index).subscribe(res => {
+      this.refreshData();
     });
-    this.refreshData();
   }
 
   onCancel(): void {
@@ -59,6 +64,10 @@ export class CliniqueComponent {
 
   private resetForm() {
     this.form.reset();
+    this.form = this.formBuilder.group({
+      id: 0,
+      name: ''
+    });   
     this.isAdding = false;
     this.refreshData();
 
