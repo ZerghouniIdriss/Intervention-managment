@@ -41,4 +41,9 @@ export class AuthenticationService {
     return this._http.get<IUser>(this.apiServer + 'Accounts/GetCurrentUser');
       
   }
+
+  public getCurrentUserName(): Observable<string> {
+    return this._http.get<string>(this.apiServer + 'Accounts/GetCurrentUserName');
+
+  }
 }

@@ -92,7 +92,15 @@ namespace Project3.Controllers
             return user;
         }
 
-        
+
+        [HttpGet("GetCurrentUserName")]
+        public async Task<string> GetCurrentUserName()
+        {
+            ApplicationUser user = await _userManager.FindByIdAsync(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var userName = user.LastName.Substring(0, 1) + ". " + user.FirstName;
+            return userName;
+        }
+
 
         // PUT: api/Cliniques/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

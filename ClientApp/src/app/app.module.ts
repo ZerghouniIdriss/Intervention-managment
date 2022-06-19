@@ -33,7 +33,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
     HomeComponent,
     CliniqueComponent,
     InterventionComponent,
