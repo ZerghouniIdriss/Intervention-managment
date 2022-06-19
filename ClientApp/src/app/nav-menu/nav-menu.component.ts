@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
@@ -14,7 +12,6 @@ export class NavMenuComponent implements OnInit {
   public userName: string;
 
   public isUserAuthenticated: boolean;
-  isReady: boolean = false;
   isExpanded = false;
 
   constructor(private _authService: AuthenticationService, private _router: Router) {

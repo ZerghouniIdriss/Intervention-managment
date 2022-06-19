@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { UserManager } from 'oidc-client';
-import { BehaviorSubject, concat, from, Observable, Subject } from 'rxjs';
-import { filter, map, mergeMap, take, tap } from 'rxjs/operators';
-import { ApplicationPaths } from '../../../api-authorization/api-authorization.constants';
+import {  Observable } from 'rxjs';
 import { AuthResponseDto } from '../_interfaces/response/AuthResponseDto';
 import { RegistrationResponseDto } from '../_interfaces/user/RegistrationResponseDto';
 import { UserForAuthenticationDto } from '../_interfaces/user/UserForAuthenticationDto';

@@ -16,7 +16,7 @@ export class CliniqueComponent {
   public isAdding: boolean = false;
   private apiServer;
 
-  constructor(private service: CliniqueService, private formBuilder: FormBuilder, protected alertService: AlertService) {
+  constructor(private service: CliniqueService, private formBuilder: FormBuilder, private alertService: AlertService) {
   
   }
 

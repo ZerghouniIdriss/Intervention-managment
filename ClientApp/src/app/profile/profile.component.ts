@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     cliniqueList: Clinique[];
   showError = false;
 
-  constructor(private service: ProfileService, private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private sharedService: SharedService, protected alertService: AlertService) {
+  constructor(private service: ProfileService, private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private sharedService: SharedService, private alertService: AlertService) {
   }
 
   initializeForm() {
