@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AuthorizeService } from 'src/api-authorization/authorize.service';
 import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
@@ -19,14 +18,14 @@ export class NavMenuComponent implements OnInit {
   isExpanded = false;
 
   constructor(private _authService: AuthenticationService, private _router: Router) {
-    this._authService.getCurrentUser()
-      .subscribe(res => {
-        this.userName = res.lastName.substring(0, 1) + ". " + res.firstName;
-    })
+  
 }
 
   ngOnInit(): void { 
-    
+      this._authService.getCurrentUser()
+      .subscribe(res => {
+        this.userName = res.lastName.substring(0, 1) + ". " + res.firstName;
+    })
    }
 
   collapse() {
